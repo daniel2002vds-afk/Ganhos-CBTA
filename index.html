@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
@@ -351,178 +352,19 @@
                 <div class="overflow-x-auto">
                     <div class="min-w-[480px]">
                         <!-- Weekdays -->
-                        <div class="grid grid-cols-7 gap-1 text-center font-black text-[11px] text-slate-3    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #081226;
-            color: #f1f5f9;
-            user-select: none;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #081226;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1c3866;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
-        }
-
-        /* Store Badge Classes */
-        .badge-araujo { background-color: #2563eb; color: #ffffff; }
-        .badge-dominos { background-color: #0284c7; color: #ffffff; }
-        .badge-pizzarone { background-color: #dc2626; color: #ffffff; }
-        .badge-pizzahut { background-color: #9333ea; color: #ffffff; }
-        .badge-olegario { background-color: #d97706; color: #ffffff; }
-        .badge-altogiro { background-color: #eab308; color: #000000; font-weight: 800; }
-        .badge-barroca { background-color: #0d9488; color: #ffffff; }
-        .badge-cota { background-color: #10b981; color: #000000; font-weight: 800; }
-
-        .excel-tab-active {
-            background-color: #ffffff !important;
-            color: #081226 !important;
-            font-weight: 900 !important;
-            border-top: 3px solid #10b981 !important;
-        }
-
-        .excel-tab-inactive {
-            background-color: #13284c;
-            color: #94a3b8;
-            border-top: 3px solid transparent;
-        }
-        .excel-tab-inactive:hover {
-            background-color: #1c3866;
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col justify-between pb-12">
-
-    <header class="bg-cbta-card border-b border-cbta-border sticky top-0 z-30 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-blue-600 flex items-center justify-center text-slate-950 font-black shadow-lg">
-                    <i class="fa-solid fa-motorcycle text-lg"></i>
-                </div>
-                <div>
-                    <h1 class="text-sm md:text-base font-black tracking-wide text-white flex items-center gap-2">
-                        REGISTRO DE GANHOS 2026
-                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">CBTA</span>
-                    </h1>
-                    <p class="text-[11px] text-slate-400">Cooperativa - Lançamentos Araújo 4.0 & Lojas</p>
-                </div>
-            </div>
-
-            <!-- Header Summary Badges -->
-            <div class="flex items-center space-x-2">
-                <button onclick="exportCSV()" class="bg-cbta-panel hover:bg-slate-800 text-xs font-bold text-slate-200 px-3 py-1.5 rounded-lg border border-cbta-border flex items-center space-x-1.5 transition">
-                    <i class="fa-solid fa-file-csv text-emerald-400"></i>
-                    <span class="hidden sm:inline">Exportar CSV</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-3 pt-3 flex-1 w-full space-y-3">
-
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-            <!-- GANHO ARAÚJO 4.0 TOTAL -->
-            <div class="bg-cbta-card p-3 rounded-xl border border-blue-500/30 relative overflow-hidden shadow-md">
-                <div class="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
-                    <i class="fa-solid fa-truck-fast"></i> Total Araújo (4.0)
-                </div>
-                <div class="text-lg md:text-2xl font-black text-white" id="metric-araujo-total">
-                    R$ 0,00
-                </div>
-                <div class="text-[10px] text-slate-400 mt-0.5">Tabela Faturado 4.0</div>
-            </div>
-
-            <!-- GANHO OUTRAS LOJAS TOTAL -->
-            <div class="bg-cbta-card p-3 rounded-xl border border-amber-500/30 relative overflow-hidden shadow-md">
-                <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
-                    <i class="fa-solid fa-store"></i> Total Outras Lojas
-                </div>
-                <div class="text-lg md:text-2xl font-black text-white" id="metric-lojas-total">
-                    R$ 0,00
-                </div>
-                <div class="text-[10px] text-slate-400 mt-0.5">Domino's, Pizzarone, etc.</div>
-            </div>
-
-            <!-- DESCONTOS DA COOPERATIVA -->
-            <div class="bg-cbta-card p-3 rounded-xl border border-rose-500/30 relative overflow-hidden shadow-md">
-                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
-                    <i class="fa-solid fa-scissors"></i> Descontos / Taxas
-                </div>
-                <div class="text-lg md:text-2xl font-black text-rose-400" id="metric-descontos-total">
-                    R$ 0,00
-                </div>
-                <div class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center">
-                    <span>Cooperativa</span>
-                    <button onclick="openDiscountModal()" class="text-rose-400 hover:underline font-bold text-[10px]">+ Desconto</button>
-                </div>
-            </div>
-
-            <!-- GANHO LÍQUIDO FINAL -->
-            <div class="bg-gradient-to-br from-cbta-card to-emerald-950/80 p-3 rounded-xl border border-emerald-500/50 relative overflow-hidden shadow-lg">
-                <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
-                    <i class="fa-solid fa-wallet"></i> Total Líquido Mês
-                </div>
-                <div class="text-xl md:text-2xl font-black text-emerald-300" id="metric-liquido-total">
-                    R$ 0,00
-                </div>
-                <div class="text-[10px] text-emerald-400/80 mt-0.5 font-semibold">Valor Final a Receber</div>
-            </div>
-        </section>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-            
-            <!-- LEFT 7 COLUMNS: CALENDAR SPREADSHEET (PLANILHA MENSAL) -->
-            <section class="lg:col-span-7 bg-cbta-card p-3 rounded-xl border border-cbta-border shadow-lg space-y-3">
-                <div class="flex items-center justify-between border-b border-cbta-border pb-2">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-calendar-days text-emerald-400 text-sm"></i>
-                        <h2 class="text-xs font-black text-white uppercase tracking-wider" id="calendar-title-display">Julho de 2026</h2>
-                    </div>
-                    <div class="text-[11px] text-slate-400 italic">
-                        * Clique em um dia para lançar/editar
-                    </div>
-                </div>
-
-                <!-- Color Badges Legend -->
-                <div class="flex flex-wrap gap-1.5 text-[10px] font-bold pb-1">
-                    <span class="px-2 py-0.5 rounded badge-araujo">Araújo (4.0)</span>
-                    <span class="px-2 py-0.5 rounded badge-dominos">Domino's</span>
-                    <span class="px-2 py-0.5 rounded badge-pizzarone">Pizzarone</span>
-                    <span class="px-2 py-0.5 rounded badge-pizzahut">Pizza Hut</span>
-                    <span class="px-2 py-0.5 rounded badge-olegario">Pizzaria Olegário</span>
-                    <span class="px-2 py-0.5 rounded badge-altogiro">Auto Giro</span>
-                    <span class="px-2 py-0.5 rounded badge-barroca">Pizzaiolo Barroca</span>
-                    <span class="px-2 py-0.5 rounded badge-cota">Cota CBTA</span>
-                </div>
-
-                <!-- Calendar Sheet Grid -->
-                <div class="overflow-x-auto">
-                    <div class="min-w-[500px]">
-                        <!-- Weekdays -->
                         <div class="grid grid-cols-7 gap-1 text-center font-black text-[11px] text-slate-300 mb-1">
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Seg</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Ter</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Qua</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Qui</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Sex</div>
-                            <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border text-amber-400">Sáb</div>
+                            <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border text-yellow-400">Sáb</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border text-rose-400">Dom</div>
                         </div>
 
                         <!-- Days Container -->
                         <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 text-xs">
-                            <!-- Generated via Javascript -->
+                            <!-- Dynamic Days -->
                         </div>
                     </div>
                 </div>
@@ -533,29 +375,28 @@
                 
                 <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                     <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-pen-to-square text-emerald-400 text-sm"></i>
-                        <h2 class="text-xs font-black text-white uppercase tracking-wider">Painel de Registro de Ganhos</h2>
+                        <i class="fa-solid fa-pen-to-square text-yellow-400 text-sm"></i>
+                        <h2 class="text-xs font-black text-white uppercase tracking-wider">Lançamento de Ganhos</h2>
                     </div>
-                    <span id="selected-date-badge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-black px-2 py-0.5 rounded-full">
+                    <span id="selected-date-badge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-black px-2 py-0.5 rounded-full">
                         Data: 01/07/2026
                     </span>
                 </div>
 
-                <!-- Selection of Date & Shift -->
+                <!-- Date & Shift Selection -->
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Data do Serviço</label>
-                        <input type="date" id="form-date-input" onchange="onDateInputChange(this.value)" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs text-emerald-400 font-bold focus:border-emerald-500 focus:outline-none">
+                        <input type="date" id="form-date-input" onchange="onDateInputChange(this.value)" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs text-yellow-400 font-bold focus:border-yellow-400 focus:outline-none">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Turno</label>
-                        <select id="form-turno-input" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs text-white font-semibold focus:border-emerald-500 focus:outline-none">
+                        <select id="form-turno-input" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs text-white font-semibold focus:border-yellow-400 focus:outline-none">
                             <option value="1º Turno (Manhã)">1º Turno (Manhã)</option>
                             <option value="2º Turno (Tarde)">2º Turno (Tarde)</option>
                             <option value="3º Turno (Noite)" selected>3º Turno (Noite)</option>
                             <option value="Madrugada">Madrugada</option>
                             <option value="Integral">Integral</option>
-                            <option value="Cota CBTA">Cota CBTA</option>
                         </select>
                     </div>
                 </div>
@@ -568,17 +409,18 @@
                     </button>
                     <button id="btn-mode-lojas" onclick="switchEntryMode('lojas')" class="py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white">
                         <i class="fa-solid fa-store text-xs"></i>
-                        <span>Outras Lojas</span>
+                        <span>Lojas CBTA</span>
                     </button>
                 </div>
 
+                <!-- FORM ARAÚJO 4.0 (EXACT RATES TABLE & FIXED NUMERIC CALCULATION) -->
                 <form id="form-araujo-container" onsubmit="saveAraujoEntry(event)" class="space-y-3">
                     <div class="bg-cbta-panel rounded-lg border border-blue-500/30 p-2.5 space-y-2">
                         <div class="flex items-center justify-between border-b border-cbta-border pb-1.5">
                             <span class="text-xs font-black text-blue-400 uppercase flex items-center gap-1">
-                                <i class="fa-solid fa-table-list"></i> Tabela Faturado Araújo 4.0
+                                <i class="fa-solid fa-table-list"></i> Tabela Araújo 4.0
                             </span>
-                            <span class="text-[10px] text-slate-400 font-bold">Qtd Executada</span>
+                            <span class="text-[10px] text-slate-400 font-bold">Qtd / KM Executado</span>
                         </div>
 
                         <div class="space-y-1.5 text-xs">
@@ -622,7 +464,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">BANDEIRADA DINHEIRO</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 12,30</span>
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 12,30</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-bandeirada-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -631,13 +473,985 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">PONTO ADICIONAL DINHEIRO</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 10,00</span>
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 10,00</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-ponto-add-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 7: Retorno Dinheiro -->
+                            <!-- Item 7: Retorno Dinheiro (CORRECTED BUG IMPLEMENTATION) -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">RETORNO DINHEIRO</span>
-   
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 9,00</span>
+                                </div>
+                                <input type="number" min="0" step="1" id="rate-retorno-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <!-- LIVE RESULT: SOMA DE GANHO 4.0 -->
+                        <div class="bg-blue-950/80 border border-blue-500/50 rounded-lg p-2.5 flex items-center justify-between mt-2">
+                            <span class="text-xs font-black text-blue-200 uppercase">SOMA DE GANHO 4.0</span>
+                            <span class="text-lg font-black text-yellow-400" id="live-araujo-sum">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs py-2 px-3 rounded-lg shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>SALVAR GANHO ARAÚJO (4.0)</span>
+                    </button>
+                </form>
+
+                <!-- FORM LOJAS CONTRATOS CBTA -->
+                <form id="form-lojas-container" onsubmit="saveLojaEntry(event)" class="hidden space-y-3">
+                    <div class="bg-cbta-panel rounded-lg border border-yellow-500/40 p-3 space-y-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Loja / Contrato CBTA</label>
+                            <select id="loja-select" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-2 text-xs font-bold text-yellow-400 focus:border-yellow-400 focus:outline-none">
+                                <option value="Domino's">Domino's</option>
+                                <option value="Pizzarone">Pizzarone</option>
+                                <option value="Pizza Hut">Pizza Hut</option>
+                                <option value="Pizzaria Olegário">Pizzaria Olegário</option>
+                                <option value="Auto Giro">Auto Giro</option>
+                                <option value="Pizzaiolo Barroca">Pizzaiolo Barroca</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Nº de Entregas</label>
+                                <input type="number" min="1" step="1" id="loja-entregas-qty" oninput="calcLojaTotal()" placeholder="Ex: 8" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Valor/Corrida (R$)</label>
+                                <input type="number" min="0" step="0.01" id="loja-valor-corrida" oninput="calcLojaTotal()" placeholder="Ex: 12.50" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Ou Valor Total Fechado (R$)</label>
+                            <input type="number" min="0" step="0.01" id="loja-valor-total" oninput="calcLojaTotalDirect()" placeholder="Ou digite o valor total final" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-black text-yellow-400 focus:outline-none">
+                        </div>
+
+                        <!-- LIVE RESULT LOJA -->
+                        <div class="bg-amber-950/60 border border-yellow-500/40 rounded-lg p-2.5 flex items-center justify-between">
+                            <span class="text-xs font-black text-yellow-200 uppercase">Faturamento Loja</span>
+                            <span class="text-lg font-black text-emerald-400" id="live-loja-sum">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-black text-xs py-2 px-3 rounded-lg shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>SALVAR GANHO DA LOJA</span>
+                    </button>
+                </form>
+
+                <div class="border-t border-cbta-border pt-2 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-black text-slate-300 uppercase">Lançamentos do Dia Selecionado</span>
+                        <span id="day-entries-count" class="text-[10px] text-yellow-400 font-bold">0 itens</span>
+                    </div>
+
+                    <div id="day-entries-list" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- TAB 3: HISTÓRICO COMPLETO (OCULTO POR PADRÃO) -->
+        <div id="main-tab-historico" class="hidden bg-cbta-card p-4 rounded-xl border border-cbta-border shadow-xl space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cbta-border pb-3">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left text-yellow-400 text-base"></i>
+                    <div>
+                        <h2 class="text-sm font-black text-white uppercase tracking-wider">Histórico de Registros (Aba Oculta)</h2>
+                        <p class="text-[11px] text-slate-400">Listagem de todos os lançamentos cadastrados</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="history-search" oninput="renderHistoryTable()" placeholder="Buscar estabelecimento..." class="bg-cbta-bg border border-cbta-border rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none">
+                    <button onclick="exportCSV()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg shadow transition flex items-center space-x-1">
+                        <i class="fa-solid fa-file-csv"></i>
+                        <span>Exportar CSV</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table of History -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="bg-cbta-panel text-slate-300 border-b border-cbta-border font-black text-[11px] uppercase">
+                            <th class="py-2.5 px-3">Data</th>
+                            <th class="py-2.5 px-3">Turno</th>
+                            <th class="py-2.5 px-3">Estabelecimento</th>
+                            <th class="py-2.5 px-3">Detalhamento</th>
+                            <th class="py-2.5 px-3">Valor Total</th>
+                            <th class="py-2.5 px-3 text-right">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- EXCEL MONTH TABS BOTTOM FOOTER -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-cbta-card border-t border-cbta-border z-40">
+        <div class="max-w-7xl mx-auto px-2 flex items-center overflow-x-auto space-x-1 py-1" id="excel-tabs-container">
+            <!-- Tabs MAIO, JUNHO, JULHO, AGOSTO dynamically created -->
+        </div>
+    </footer>
+
+    <!-- MODAL DE DESCONTOS DA COOPERATIVA -->
+    <div id="discount-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cbta-card border-2 border-yellow-500/50 rounded-xl max-w-md w-full p-4 space-y-3 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                <h3 class="text-xs font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-scissors text-yellow-400"></i>
+                    Descontos da Cooperativa CBTA
+                </h3>
+                <button onclick="closeDiscountModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <form onsubmit="saveDiscount(event)" class="space-y-2">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-300 mb-1">Descrição do Desconto</label>
+                    <input type="text" id="disc-desc" placeholder="Ex: Taxa Cota, Frota, Cooperativa..." required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-300 mb-1">Valor do Desconto (R$)</label>
+                    <input type="number" step="0.01" min="0" id="disc-val" placeholder="0,00" required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-black text-rose-400 focus:outline-none">
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeDiscountModal()" class="px-3 py-1.5 bg-cbta-panel text-xs text-slate-300 rounded font-bold">Cancelar</button>
+                    <button type="submit" class="px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 text-xs font-black rounded">Adicionar</button>
+                </div>
+            </form>
+
+            <div class="border-t border-cbta-border pt-2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Descontos deste Mês</span>
+                <div id="discounts-list-container" class="space-y-1 mt-1 max-h-36 overflow-y-auto">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_ENTRIES = 'cbta_2026_ganhos_v4_entries';
+        const STORAGE_DISCOUNTS = 'cbta_2026_ganhos_v4_discounts';
+
+        let currentMainTab = 'resumo'; // 'resumo', 'planilha', 'historico'
+        let currentMonthKey = '2026-07'; // Default July 2026
+        let selectedDateStr = '2026-07-01';
+        let currentMode = 'araujo'; // 'araujo' or 'lojas'
+
+        let entries = [];
+        let discounts = [];
+
+        const monthNames = {
+            '2026-05': 'MAIO',
+            '2026-06': 'JUNHO',
+            '2026-07': 'JULHO',
+            '2026-08': 'AGOSTO',
+            '2026-09': 'SETEMBRO',
+            '2026-10': 'OUTUBRO'
+        };
+
+        const monthFullTitles = {
+            '2026-05': 'Maio de 2026',
+            '2026-06': 'Junho de 2026',
+            '2026-07': 'Julho de 2026',
+            '2026-08': 'Agosto de 2026',
+            '2026-09': 'Setembro de 2026',
+            '2026-10': 'Outubro de 2026'
+        };
+
+        /* Standard Rates for Araújo 4.0 */
+        const RATES = {
+            bandeirada: 7.90,
+            pontoAdd: 6.25,
+            retornoNorm: 5.60,
+            km: 1.70,
+            bandeiradaDin: 12.30,
+            pontoAddDin: 10.00,
+            retornoDin: 9.00
+        };
+
+        /* Initial Seed Data for demonstration */
+        function getInitialData() {
+            return [
+                {
+                    id: 'e1',
+                    date: '2026-07-01',
+                    type: 'araujo',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Araújo (4.0)',
+                    items: { bandeirada: 10, pontoAdd: 4, km: 12 },
+                    valor: 124.40
+                },
+                {
+                    id: 'e2',
+                    date: '2026-07-01',
+                    type: 'lojas',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Domino\'s',
+                    entregas: 8,
+                    valorCorrida: 12.50,
+                    valor: 100.00
+                },
+                {
+                    id: 'e3',
+                    date: '2026-07-03',
+                    type: 'lojas',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Pizzarone',
+                    entregas: 10,
+                    valorCorrida: 14.00,
+                    valor: 140.00
+                },
+                {
+                    id: 'e4',
+                    date: '2026-07-04',
+                    type: 'araujo',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Araújo (4.0)',
+                    items: { bandeirada: 12, pontoAdd: 5, retornoNorm: 2, km: 15, retornoDin: 2 },
+                    valor: 180.75
+                },
+                {
+                    id: 'e5',
+                    date: '2026-07-08',
+                    type: 'lojas',
+                    turno: 'Integral',
+                    estab: 'Pizzaria Olegário',
+                    entregas: 12,
+                    valorCorrida: 15.00,
+                    valor: 180.00
+                },
+                {
+                    id: 'e6',
+                    date: '2026-07-10',
+                    type: 'lojas',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Auto Giro',
+                    entregas: 9,
+                    valorCorrida: 13.00,
+                    valor: 117.00
+                },
+                {
+                    id: 'e7',
+                    date: '2026-07-15',
+                    type: 'lojas',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Pizzaiolo Barroca',
+                    entregas: 11,
+                    valorCorrida: 12.00,
+                    valor: 132.00
+                },
+                {
+                    id: 'e8',
+                    date: '2026-07-22',
+                    type: 'araujo',
+                    turno: '3º Turno (Noite)',
+                    estab: 'Araújo (4.0)',
+                    items: { bandeirada: 15, pontoAdd: 6, retornoDin: 3 },
+                    valor: 182.50
+                }
+            ];
+        }
+
+        function getInitialDiscounts() {
+            return [
+                { id: 'd1', month: '2026-07', desc: 'Taxa Cooperativa CBTA', valor: 400.00 },
+                { id: 'd2', month: '2026-07', desc: 'Desconto de Cota / Frota', valor: 310.00 }
+            ];
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStorage();
+            renderExcelTabs();
+            selectDate(selectedDateStr);
+            renderDashboard();
+        });
+
+        function loadStorage() {
+            const storedEntries = localStorage.getItem(STORAGE_ENTRIES);
+            if (storedEntries) {
+                try { entries = JSON.parse(storedEntries); } catch(e) { entries = getInitialData(); }
+            } else {
+                entries = getInitialData();
+                saveEntries();
+            }
+
+            const storedDiscounts = localStorage.getItem(STORAGE_DISCOUNTS);
+            if (storedDiscounts) {
+                try { discounts = JSON.parse(storedDiscounts); } catch(e) { discounts = getInitialDiscounts(); }
+            } else {
+                discounts = getInitialDiscounts();
+                saveDiscounts();
+            }
+        }
+
+        function saveEntries() { localStorage.setItem(STORAGE_ENTRIES, JSON.stringify(entries)); }
+        function saveDiscounts() { localStorage.setItem(STORAGE_DISCOUNTS, JSON.stringify(discounts)); }
+
+        // Main Navigation Switching
+        function switchMainTab(tab) {
+            currentMainTab = tab;
+            const btnResumo = document.getElementById('nav-btn-resumo');
+            const btnPlanilha = document.getElementById('nav-btn-planilha');
+            const btnHistorico = document.getElementById('nav-btn-historico');
+
+            const tabResumo = document.getElementById('main-tab-resumo');
+            const tabPlanilha = document.getElementById('main-tab-planilha');
+            const tabHistorico = document.getElementById('main-tab-historico');
+
+            [btnResumo, btnPlanilha, btnHistorico].forEach(b => b.className = 'nav-btn-inactive px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5');
+            [tabResumo, tabPlanilha, tabHistorico].forEach(t => t.classList.add('hidden'));
+
+            if (tab === 'resumo') {
+                btnResumo.className = 'nav-btn-active px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5';
+                tabResumo.classList.remove('hidden');
+            } else if (tab === 'planilha') {
+                btnPlanilha.className = 'nav-btn-active px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5';
+                tabPlanilha.classList.remove('hidden');
+            } else if (tab === 'historico') {
+                btnHistorico.className = 'nav-btn-active px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5';
+                tabHistorico.classList.remove('hidden');
+                renderHistoryTable();
+            }
+        }
+
+        function renderExcelTabs() {
+            const container = document.getElementById('excel-tabs-container');
+            container.innerHTML = '';
+
+            Object.keys(monthNames).forEach(mKey => {
+                const btn = document.createElement('button');
+                const isActive = (mKey === currentMonthKey);
+                btn.className = `px-5 py-1.5 text-xs font-extrabold rounded-t border-x border-cbta-border transition shrink-0 ${isActive ? 'excel-tab-active' : 'excel-tab-inactive'}`;
+                btn.innerText = monthNames[mKey];
+                btn.onclick = () => switchMonth(mKey);
+                container.appendChild(btn);
+            });
+        }
+
+        function switchMonth(mKey) {
+            currentMonthKey = mKey;
+            document.getElementById('calendar-title-display').innerText = monthFullTitles[mKey];
+            document.getElementById('resumo-semanal-month-title').innerText = monthFullTitles[mKey];
+            
+            selectedDateStr = `${currentMonthKey}-01`;
+            selectDate(selectedDateStr);
+            renderExcelTabs();
+            renderDashboard();
+        }
+
+        function selectDate(dateStr) {
+            selectedDateStr = dateStr;
+            document.getElementById('form-date-input').value = dateStr;
+            
+            const [y, m, d] = dateStr.split('-');
+            document.getElementById('selected-date-badge').innerText = `Data: ${d}/${m}/${y}`;
+
+            renderDayEntriesList();
+            renderCalendarGrid();
+        }
+
+        function onDateInputChange(newVal) {
+            if (!newVal) return;
+            const newMonth = newVal.substring(0, 7);
+            if (monthNames[newMonth] && newMonth !== currentMonthKey) {
+                currentMonthKey = newMonth;
+                renderExcelTabs();
+            }
+            selectDate(newVal);
+            renderDashboard();
+        }
+
+        function switchEntryMode(mode) {
+            currentMode = mode;
+            const btnAraujo = document.getElementById('btn-mode-araujo');
+            const btnLojas = document.getElementById('btn-mode-lojas');
+            const formAraujo = document.getElementById('form-araujo-container');
+            const formLojas = document.getElementById('form-lojas-container');
+
+            if (mode === 'araujo') {
+                btnAraujo.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-blue-600 text-white shadow';
+                btnLojas.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white';
+                formAraujo.classList.remove('hidden');
+                formLojas.classList.add('hidden');
+            } else {
+                btnLojas.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-yellow-400 text-slate-950 shadow';
+                btnAraujo.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white';
+                formLojas.classList.remove('hidden');
+                formAraujo.classList.add('hidden');
+            }
+        }
+
+        /* Helper to safely parse float numbers without NaN errors */
+        function safeVal(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el || !el.value) return 0;
+            const cleanStr = el.value.toString().replace(',', '.');
+            const parsed = parseFloat(cleanStr);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+
+        /* Calculation Logic for Araújo 4.0 Form (FIXED BUGS) */
+        function calcAraujoTotal() {
+            const b = safeVal('rate-bandeirada') * RATES.bandeirada;
+            const pa = safeVal('rate-ponto-add') * RATES.pontoAdd;
+            const rn = safeVal('rate-retorno-norm') * RATES.retornoNorm;
+            const km = safeVal('rate-km') * RATES.km;
+            const bd = safeVal('rate-bandeirada-din') * RATES.bandeiradaDin;
+            const pad = safeVal('rate-ponto-add-din') * RATES.pontoAddDin;
+            const rd = safeVal('rate-retorno-din') * RATES.retornoDin; // Fixed Retorno Dinheiro
+
+            const total = b + pa + rn + km + bd + pad + rd;
+            document.getElementById('live-araujo-sum').innerText = formatCurrency(total);
+            return total;
+        }
+
+        /* Calculation Logic for Lojas Form */
+        function calcLojaTotal() {
+            const qty = safeVal('loja-entregas-qty');
+            const rate = safeVal('loja-valor-corrida');
+            const total = qty * rate;
+            if (total > 0) {
+                document.getElementById('loja-valor-total').value = total.toFixed(2);
+            }
+            document.getElementById('live-loja-sum').innerText = formatCurrency(total);
+            return total;
+        }
+
+        function calcLojaTotalDirect() {
+            const total = safeVal('loja-valor-total');
+            document.getElementById('live-loja-sum').innerText = formatCurrency(total);
+            return total;
+        }
+
+        function saveAraujoEntry(e) {
+            e.preventDefault();
+            const valorTotal = calcAraujoTotal();
+            if (valorTotal <= 0) {
+                alert('Insira ao menos um item de entrega faturado da Araújo.');
+                return;
+            }
+
+            const turno = document.getElementById('form-turno-input').value;
+
+            const newEntry = {
+                id: 'e_' + Date.now(),
+                date: selectedDateStr,
+                type: 'araujo',
+                turno: turno,
+                estab: 'Araújo (4.0)',
+                items: {
+                    bandeirada: safeVal('rate-bandeirada'),
+                    pontoAdd: safeVal('rate-ponto-add'),
+                    retornoNorm: safeVal('rate-retorno-norm'),
+                    km: safeVal('rate-km'),
+                    bandeiradaDin: safeVal('rate-bandeirada-din'),
+                    pontoAddDin: safeVal('rate-ponto-add-din'),
+                    retornoDin: safeVal('rate-retorno-din')
+                },
+                valor: valorTotal
+            };
+
+            entries.push(newEntry);
+            saveEntries();
+            resetAraujoForm();
+            renderDashboard();
+        }
+
+        function resetAraujoForm() {
+            ['rate-bandeirada', 'rate-ponto-add', 'rate-retorno-norm', 'rate-km', 'rate-bandeirada-din', 'rate-ponto-add-din', 'rate-retorno-din'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            document.getElementById('live-araujo-sum').innerText = formatCurrency(0);
+        }
+
+        function saveLojaEntry(e) {
+            e.preventDefault();
+            const estab = document.getElementById('loja-select').value;
+            const entregas = safeVal('loja-entregas-qty');
+            const valorCorrida = safeVal('loja-valor-corrida');
+            let valorTotal = safeVal('loja-valor-total');
+
+            if (valorTotal <= 0 && (entregas * valorCorrida) > 0) {
+                valorTotal = entregas * valorCorrida;
+            }
+
+            if (valorTotal <= 0) {
+                alert('Insira a quantidade e o valor para salvar o lançamento da loja.');
+                return;
+            }
+
+            const turno = document.getElementById('form-turno-input').value;
+
+            const newEntry = {
+                id: 'e_' + Date.now(),
+                date: selectedDateStr,
+                type: 'lojas',
+                turno: turno,
+                estab: estab,
+                entregas: entregas,
+                valorCorrida: valorCorrida,
+                valor: valorTotal
+            };
+
+            entries.push(newEntry);
+            saveEntries();
+            resetLojaForm();
+            renderDashboard();
+        }
+
+        function resetLojaForm() {
+            document.getElementById('loja-entregas-qty').value = '';
+            document.getElementById('loja-valor-corrida').value = '';
+            document.getElementById('loja-valor-total').value = '';
+            document.getElementById('live-loja-sum').innerText = formatCurrency(0);
+        }
+
+        function deleteEntry(id) {
+            entries = entries.filter(e => e.id !== id);
+            saveEntries();
+            renderDashboard();
+        }
+
+        function renderDashboard() {
+            const currentMonthEntries = entries.filter(e => e.date.startsWith(currentMonthKey));
+
+            let totalAraujo = 0;
+            let totalLojas = 0;
+
+            currentMonthEntries.forEach(item => {
+                if (item.type === 'araujo' || item.estab.includes('Araújo')) {
+                    totalAraujo += item.valor;
+                } else {
+                    totalLojas += item.valor;
+                }
+            });
+
+            const currentDiscounts = discounts.filter(d => d.month === currentMonthKey);
+            const totalDescontos = currentDiscounts.reduce((sum, d) => sum + (d.valor || 0), 0);
+            const totalLiquido = (totalAraujo + totalLojas) - totalDescontos;
+
+            // Header Top Metrics
+            document.getElementById('metric-araujo-total').innerText = formatCurrency(totalAraujo);
+            document.getElementById('metric-lojas-total').innerText = formatCurrency(totalLojas);
+            document.getElementById('metric-descontos-total').innerText = formatCurrency(totalDescontos);
+            document.getElementById('metric-liquido-total').innerText = formatCurrency(totalLiquido);
+
+            // Tab 1 Resumos
+            renderResumoSemanal(currentMonthEntries);
+            renderResumoMensal(totalAraujo, totalLojas, totalDescontos, totalLiquido);
+            renderResumoAnual();
+
+            // Tab 2 Planilha
+            renderCalendarGrid();
+            renderDayEntriesList();
+            renderDiscountsList();
+
+            // Tab 3 Histórico (if visible)
+            if (currentMainTab === 'historico') {
+                renderHistoryTable();
+            }
+        }
+
+        /* Render Resumo Semanal (Week 1 to Week 5) */
+        function renderResumoSemanal(monthEntries) {
+            const container = document.getElementById('resumo-semanal-cards-container');
+            container.innerHTML = '';
+
+            const [year, month] = currentMonthKey.split('-').map(Number);
+            const daysInMonth = new Date(year, month, 0).getDate();
+
+            // Divide month into 5 weekly brackets (1-7, 8-14, 15-21, 22-28, 29-end)
+            const weeks = [
+                { title: 'Semana 1', start: 1, end: 7 },
+                { title: 'Semana 2', start: 8, end: 14 },
+                { title: 'Semana 3', start: 15, end: 21 },
+                { title: 'Semana 4', start: 22, end: 28 },
+                { title: 'Semana 5', start: 29, end: daysInMonth }
+            ];
+
+            weeks.forEach((w, idx) => {
+                const weekEntries = monthEntries.filter(e => {
+                    const day = parseInt(e.date.split('-')[2]);
+                    return day >= w.start && day <= w.end;
+                });
+
+                let weekAraujo = 0;
+                let weekLojas = 0;
+                weekEntries.forEach(item => {
+                    if (item.type === 'araujo' || item.estab.includes('Araújo')) {
+                        weekAraujo += item.valor;
+                    } else {
+                        weekLojas += item.valor;
+                    }
+                });
+
+                const weekTotal = weekAraujo + weekLojas;
+
+                const card = document.createElement('div');
+                card.className = 'bg-cbta-panel p-3 rounded-lg border border-cbta-border flex flex-col justify-between space-y-2';
+                card.innerHTML = `
+                    <div class="flex justify-between items-center border-b border-cbta-border/60 pb-1.5">
+                        <span class="font-black text-xs text-yellow-400 uppercase">${w.title}</span>
+                        <span class="text-[10px] text-slate-400">${w.start} a ${w.end}</span>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-base font-black text-white">${formatCurrency(weekTotal)}</div>
+                        <div class="text-[10px] text-emerald-400 font-semibold flex justify-between">
+                            <span>Araújo:</span> <span>${formatCurrency(weekAraujo)}</span>
+                        </div>
+                        <div class="text-[10px] text-yellow-300 font-semibold flex justify-between">
+                            <span>Lojas:</span> <span>${formatCurrency(weekLojas)}</span>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 border-t border-cbta-border/40 pt-1 text-right">
+                        ${weekEntries.length} lançamentos
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        /* Render Resumo Mensal */
+        function renderResumoMensal(araujo, lojas, descontos, liquido) {
+            const bruto = araujo + lojas;
+            document.getElementById('resumo-mensal-bruto').innerText = formatCurrency(bruto);
+            document.getElementById('resumo-mensal-araujo').innerText = formatCurrency(araujo);
+            document.getElementById('resumo-mensal-lojas').innerText = formatCurrency(lojas);
+            document.getElementById('resumo-mensal-descontos').innerText = formatCurrency(descontos);
+            document.getElementById('resumo-mensal-liquido').innerText = formatCurrency(liquido);
+
+            let pctAraujo = 50;
+            let pctLojas = 50;
+
+            if (bruto > 0) {
+                pctAraujo = Math.round((araujo / bruto) * 100);
+                pctLojas = 100 - pctAraujo;
+            }
+
+            document.getElementById('resumo-pct-araujo').innerText = `${pctAraujo}% Araújo / ${pctLojas}% Lojas`;
+            document.getElementById('bar-pct-araujo').style.width = `${pctAraujo}%`;
+            document.getElementById('bar-pct-lojas').style.width = `${pctLojas}%`;
+        }
+
+        /* Render Resumo Anual 2026 */
+        function renderResumoAnual() {
+            const tbody = document.getElementById('resumo-anual-table-body');
+            tbody.innerHTML = '';
+
+            let grandAraujo = 0;
+            let grandLojas = 0;
+            let grandDescontos = 0;
+            let grandLiquido = 0;
+
+            Object.keys(monthNames).forEach(mKey => {
+                const monthEntries = entries.filter(e => e.date.startsWith(mKey));
+                let mAraujo = 0;
+                let mLojas = 0;
+
+                monthEntries.forEach(item => {
+                    if (item.type === 'araujo' || item.estab.includes('Araújo')) mAraujo += item.valor;
+                    else mLojas += item.valor;
+                });
+
+                const mDiscounts = discounts.filter(d => d.month === mKey);
+                const mDescTotal = mDiscounts.reduce((sum, d) => sum + (d.valor || 0), 0);
+                const mLiquido = (mAraujo + mLojas) - mDescTotal;
+
+                grandAraujo += mAraujo;
+                grandLojas += mLojas;
+                grandDescontos += mDescTotal;
+                grandLiquido += mLiquido;
+
+                const isCurrent = (mKey === currentMonthKey);
+
+                const tr = document.createElement('tr');
+                tr.className = `hover:bg-cbta-panel/50 transition ${isCurrent ? 'bg-yellow-400/10 font-bold' : ''}`;
+                tr.innerHTML = `
+                    <td class="py-2 px-2.5 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full ${isCurrent ? 'bg-yellow-400' : 'bg-slate-600'}"></span>
+                        ${monthNames[mKey]}
+                    </td>
+                    <td class="py-2 px-2.5 text-emerald-400">${formatCurrency(mAraujo)}</td>
+                    <td class="py-2 px-2.5 text-yellow-400">${formatCurrency(mLojas)}</td>
+                    <td class="py-2 px-2.5 text-rose-400">${formatCurrency(mDescTotal)}</td>
+                    <td class="py-2 px-2.5 text-right font-black ${mLiquido >= 0 ? 'text-emerald-300' : 'text-rose-400'}">${formatCurrency(mLiquido)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('anual-total-araujo').innerText = formatCurrency(grandAraujo);
+            document.getElementById('anual-total-lojas').innerText = formatCurrency(grandLojas);
+            document.getElementById('anual-total-descontos').innerText = formatCurrency(grandDescontos);
+            document.getElementById('anual-total-liquido').innerText = formatCurrency(grandLiquido);
+        }
+
+        function renderCalendarGrid() {
+            const grid = document.getElementById('calendar-days-grid');
+            grid.innerHTML = '';
+
+            const [year, month] = currentMonthKey.split('-').map(Number);
+            const firstDayIndex = new Date(year, month - 1, 1).getDay();
+            const mondayOffset = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+            const daysInMonth = new Date(year, month, 0).getDate();
+
+            // Empty cells for alignment
+            for (let i = 0; i < mondayOffset; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'min-h-[75px] bg-cbta-bg/30 border border-cbta-border/20 rounded p-1 opacity-20';
+                grid.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayStr = String(day).padStart(2, '0');
+                const fullDate = `${currentMonthKey}-${dayStr}`;
+
+                const dayEntries = entries.filter(e => e.date === fullDate);
+                const dayTotal = dayEntries.reduce((sum, e) => sum + e.valor, 0);
+
+                const isSelected = (fullDate === selectedDateStr);
+
+                const dayCell = document.createElement('div');
+                dayCell.className = `min-h-[85px] bg-cbta-panel border rounded p-1 flex flex-col justify-between transition cursor-pointer ${
+                    isSelected ? 'border-yellow-400 bg-cbta-panel/90 ring-2 ring-yellow-400/50' : 'border-cbta-border hover:border-emerald-400'
+                }`;
+                dayCell.onclick = () => selectDate(fullDate);
+
+                let headerHtml = `
+                    <div class="flex items-center justify-between border-b border-cbta-border/50 pb-0.5 mb-1">
+                        <span class="font-black text-[11px] ${isSelected ? 'text-yellow-400' : 'text-white'}">${day}</span>
+                        ${dayTotal > 0 ? `<span class="text-[9px] font-black text-emerald-400">R$ ${dayTotal.toFixed(2)}</span>` : ''}
+                    </div>
+                `;
+
+                let contentHtml = `<div class="space-y-0.5 overflow-y-auto max-h-[55px]">`;
+
+                if (dayEntries.length === 0) {
+                    contentHtml += `<div class="text-[9px] text-slate-500 italic text-center py-2">+ Lançar</div>`;
+                } else {
+                    dayEntries.forEach(item => {
+                        const badgeClass = getBadgeClassForStore(item.estab);
+                        contentHtml += `
+                            <div class="p-0.5 rounded text-[9px] font-bold flex items-center justify-between ${badgeClass} shadow-sm">
+                                <span class="truncate max-w-[55px]">${item.estab}</span>
+                                <span>R$${item.valor.toFixed(0)}</span>
+                            </div>
+                        `;
+                    });
+                }
+                contentHtml += `</div>`;
+
+                dayCell.innerHTML = headerHtml + contentHtml;
+                grid.appendChild(dayCell);
+            }
+        }
+
+        function getBadgeClassForStore(estab) {
+            if (estab.includes('Araújo')) return 'badge-araujo';
+            if (estab.includes('Domino')) return 'badge-dominos';
+            if (estab.includes('Pizzarone')) return 'badge-pizzarone';
+            if (estab.includes('Hut')) return 'badge-pizzahut';
+            if (estab.includes('Olegário')) return 'badge-olegario';
+            if (estab.includes('Auto')) return 'badge-altogiro';
+            if (estab.includes('Barroca')) return 'badge-barroca';
+            return 'badge-araujo';
+        }
+
+        function renderDayEntriesList() {
+            const container = document.getElementById('day-entries-list');
+            container.innerHTML = '';
+
+            const dayEntries = entries.filter(e => e.date === selectedDateStr);
+            document.getElementById('day-entries-count').innerText = `${dayEntries.length} lançamentos`;
+
+            if (dayEntries.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-3 text-xs text-slate-500 italic bg-cbta-bg/40 rounded border border-cbta-border/40">
+                        Nenhum ganho registrado nesta data.
+                    </div>
+                `;
+                return;
+            }
+
+            dayEntries.forEach(item => {
+                const badgeClass = getBadgeClassForStore(item.estab);
+                const div = document.createElement('div');
+                div.className = 'p-2 bg-cbta-panel rounded border border-cbta-border flex items-center justify-between text-xs';
+
+                let detailsText = item.turno;
+                if (item.type === 'lojas' && item.entregas) {
+                    detailsText += ` • ${item.entregas} entregas`;
+                }
+
+                div.innerHTML = `
+                    <div class="space-y-0.5">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold ${badgeClass}">${item.estab}</span>
+                            <span class="text-[10px] text-slate-300 font-semibold">${detailsText}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-black text-emerald-400 text-xs">${formatCurrency(item.valor)}</span>
+                        <button onclick="deleteEntry('${item.id}')" class="text-slate-400 hover:text-rose-400 text-xs p-1" title="Excluir">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /* Render History Table (Tab 3 Oculta) */
+        function renderHistoryTable() {
+            const tbody = document.getElementById('history-table-body');
+            tbody.innerHTML = '';
+
+            const search = (document.getElementById('history-search')?.value || '').toLowerCase();
+
+            let filtered = entries.filter(e => e.estab.toLowerCase().includes(search));
+            filtered.sort((a, b) => b.date.localeCompare(a.date));
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-slate-500 italic">Nenhum registro encontrado.</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const badgeClass = getBadgeClassForStore(item.estab);
+                const [y, m, d] = item.date.split('-');
+
+                let detailsStr = item.type === 'araujo' ? 'Tabela Araújo 4.0' : `${item.entregas || 0} entregas`;
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-cbta-panel/50 border-b border-cbta-border/40';
+                tr.innerHTML = `
+                    <td class="py-2 px-3 font-bold text-yellow-400">${d}/${m}/${y}</td>
+                    <td class="py-2 px-3">${item.turno}</td>
+                    <td class="py-2 px-3">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">${item.estab}</span>
+                    </td>
+                    <td class="py-2 px-3 text-slate-400 text-[11px]">${detailsStr}</td>
+                    <td class="py-2 px-3 font-black text-emerald-400">${formatCurrency(item.valor)}</td>
+                    <td class="py-2 px-3 text-right">
+                        <button onclick="deleteEntry('${item.id}')" class="text-slate-400 hover:text-rose-400 text-xs">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        /* Discount Modal Logic */
+        function openDiscountModal() {
+            document.getElementById('discount-modal').classList.remove('hidden');
+            renderDiscountsList();
+        }
+
+        function closeDiscountModal() {
+            document.getElementById('discount-modal').classList.add('hidden');
+        }
+
+        function saveDiscount(e) {
+            e.preventDefault();
+            const desc = document.getElementById('disc-desc').value.trim();
+            const val = safeVal('disc-val');
+
+            if (!desc || val <= 0) return;
+
+            discounts.push({
+                id: 'd_' + Date.now(),
+                month: currentMonthKey,
+                desc: desc,
+                valor: val
+            });
+
+            saveDiscounts();
+            document.getElementById('disc-desc').value = '';
+            document.getElementById('disc-val').value = '';
+            renderDashboard();
+        }
+
+        function deleteDiscount(id) {
+            discounts = discounts.filter(d => d.id !== id);
+            saveDiscounts();
+            renderDashboard();
+        }
+
+        function renderDiscountsList() {
+            const container = document.getElementById('discounts-list-container');
+            container.innerHTML = '';
+
+            const currentDisc = discounts.filter(d => d.month === currentMonthKey);
+            if (currentDisc.length === 0) {
+                container.innerHTML = `<div class="text-[10px] text-slate-500 italic py-1">Sem descontos cadastrados neste mês.</div>`;
+                return;
+            }
+
+            currentDisc.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'p-1.5 bg-cbta-bg rounded border border-cbta-border flex items-center justify-between text-xs';
+                div.innerHTML = `
+                    <span class="text-slate-300 font-semibold text-[11px]">${item.desc}</span>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-rose-400 text-xs">${formatCurrency(item.valor)}</span>
+                        <button onclick="deleteDiscount('${item.id}')" class="text-slate-400 hover:text-rose-400">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function exportCSV() {
+            const currentMonthEntries = entries.filter(e => e.date.startsWith(currentMonthKey));
+            if (currentMonthEntries.length === 0) {
+                alert('Nenhum dado cadastrado para este mês.');
+                return;
+            }
+
+            let csv = "ID,Data,Turno,Estabelecimento,Valor\n";
+            currentMonthEntries.forEach(item => {
+                csv += `"${item.id}","${item.date}","${item.turno}","${item.estab}","${item.valor}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", `Ganhos_CBTA_${currentMonthKey}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function formatCurrency(val) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0);
+        }
+    </script>
+</body>
+</html>
+```
