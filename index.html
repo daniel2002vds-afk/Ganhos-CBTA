@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Ganhos 2026 - Cooperativa CBTA</title>
+    <title>CBTA 2026 - Registro de Ganhos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,19 +12,21 @@
                 extend: {
                     colors: {
                         cbta: {
-                            bg: '#081226',
-                            card: '#0d1e3d',
-                            panel: '#13284c',
-                            border: '#1c3866',
-                            araujo: '#2563eb',
-                            araujoHeader: '#1d4ed8',
-                            dominos: '#0284c7',
-                            pizzarone: '#dc2626',
-                            pizzahut: '#9333ea',
-                            olegario: '#d97706',
-                            altogiro: '#eab308',
-                            barroca: '#0d9488',
-                            cota: '#10b981'
+                            bg: '#0B1329',
+                            card: '#132042',
+                            panel: '#1A2B56',
+                            border: '#23396C',
+                            green: '#10B981',
+                            greenLight: '#34D399',
+                            yellow: '#FACC15',
+                            yellowDark: '#CA8A04',
+                            araujo: '#2563EB',
+                            dominos: '#0284C7',
+                            pizzarone: '#DC2626',
+                            pizzahut: '#9333EA',
+                            olegario: '#D97706',
+                            altogiro: '#EAB308',
+                            barroca: '#0D9488'
                         }
                     }
                 }
@@ -35,6 +37,321 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1329;
+            color: #F8FAFC;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1329;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #23396C;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10B981;
+        }
+
+        /* Store Badges Palette */
+        .badge-araujo { background-color: #2563EB; color: #FFFFFF; }
+        .badge-dominos { background-color: #0284C7; color: #FFFFFF; }
+        .badge-pizzarone { background-color: #DC2626; color: #FFFFFF; }
+        .badge-pizzahut { background-color: #9333EA; color: #FFFFFF; }
+        .badge-olegario { background-color: #D97706; color: #FFFFFF; }
+        .badge-altogiro { background-color: #EAB308; color: #000000; font-weight: 800; }
+        .badge-barroca { background-color: #0D9488; color: #FFFFFF; }
+
+        /* Excel Bottom Tabs Styling */
+        .excel-tab-active {
+            background-color: #FACC15 !important;
+            color: #0B1329 !important;
+            font-weight: 900 !important;
+            border-top: 3px solid #10B981 !important;
+            box-shadow: 0 -2px 10px rgba(250, 204, 21, 0.3);
+        }
+
+        .excel-tab-inactive {
+            background-color: #132042;
+            color: #94A3B8;
+            border-top: 3px solid transparent;
+        }
+        .excel-tab-inactive:hover {
+            background-color: #1A2B56;
+            color: #F8FAFC;
+        }
+
+        /* Main Nav Active State */
+        .nav-btn-active {
+            background-color: #10B981 !important;
+            color: #0B1329 !important;
+            font-weight: 800 !important;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+        .nav-btn-inactive {
+            background-color: #1A2B56;
+            color: #CBD5E1;
+            border: 1px solid #23396C;
+        }
+        .nav-btn-inactive:hover {
+            background-color: #23396C;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between pb-12">
+
+    <header class="bg-cbta-card border-b border-cbta-border sticky top-0 z-30 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-3 py-2.5 flex flex-wrap items-center justify-between gap-2">
+            
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 via-emerald-400 to-emerald-600 flex items-center justify-center text-cbta-bg font-black shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid fa-motorcycle text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm md:text-base font-black tracking-wide text-white flex items-center gap-2">
+                        REGISTRO DE GANHOS 2026
+                        <span class="text-[10px] bg-yellow-400/20 text-yellow-300 px-2 py-0.5 rounded-full border border-yellow-400/40 font-bold">CBTA</span>
+                    </h1>
+                    <p class="text-[11px] text-emerald-400 font-semibold">Cooperativa - Lançamentos Araújo 4.0 & Lojas</p>
+                </div>
+            </div>
+
+            <!-- Header Nav Tabs Selector -->
+            <div class="flex items-center space-x-1.5 overflow-x-auto">
+                <button id="nav-btn-resumo" onclick="switchMainTab('resumo')" class="nav-btn-active px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Resumo (Geral)</span>
+                </button>
+                <button id="nav-btn-planilha" onclick="switchMainTab('planilha')" class="nav-btn-inactive px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Planilha & Lançar</span>
+                </button>
+                <button id="nav-btn-historico" onclick="switchMainTab('historico')" class="nav-btn-inactive px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-eye-slash text-yellow-400"></i>
+                    <span>Histórico (Oculto)</span>
+                </button>
+            </div>
+
+            <!-- Discount Manager Action -->
+            <div class="flex items-center space-x-2">
+                <button onclick="openDiscountModal()" class="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg shadow flex items-center space-x-1.5 transition">
+                    <i class="fa-solid fa-scissors"></i>
+                    <span>Descontos</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-3 pt-3 flex-1 w-full space-y-3">
+
+        <!-- TOP SUMMARY METRICS (Always Visible) -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+            <!-- GANHO ARAÚJO 4.0 TOTAL -->
+            <div class="bg-cbta-card p-3 rounded-xl border border-emerald-500/40 relative overflow-hidden shadow-md">
+                <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-truck-fast text-yellow-400"></i> Araújo (4.0) Mês
+                </div>
+                <div class="text-lg md:text-2xl font-black text-white" id="metric-araujo-total">
+                    R$ 0,00
+                </div>
+                <div class="text-[10px] text-slate-400 mt-0.5">Tabela Faturado Araújo</div>
+            </div>
+
+            <!-- GANHO CONTRATOS LOJAS CBTA TOTAL -->
+            <div class="bg-cbta-card p-3 rounded-xl border border-yellow-500/40 relative overflow-hidden shadow-md">
+                <div class="text-[10px] font-bold text-yellow-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-store text-emerald-400"></i> Lojas CBTA Mês
+                </div>
+                <div class="text-lg md:text-2xl font-black text-white" id="metric-lojas-total">
+                    R$ 0,00
+                </div>
+                <div class="text-[10px] text-slate-400 mt-0.5">Domino's, Pizzarone, etc.</div>
+            </div>
+
+            <!-- DESCONTOS DA COOPERATIVA -->
+            <div class="bg-cbta-card p-3 rounded-xl border border-rose-500/40 relative overflow-hidden shadow-md">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-scissors"></i> Descontos Cooperativa
+                </div>
+                <div class="text-lg md:text-2xl font-black text-rose-400" id="metric-descontos-total">
+                    R$ 0,00
+                </div>
+                <div class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center">
+                    <span>Taxas / Cotas</span>
+                    <button onclick="openDiscountModal()" class="text-yellow-400 hover:underline font-bold text-[10px]">+ Editar</button>
+                </div>
+            </div>
+
+            <!-- GANHO LÍQUIDO FINAL -->
+            <div class="bg-gradient-to-br from-cbta-card via-cbta-panel to-emerald-950 p-3 rounded-xl border-2 border-emerald-400/60 relative overflow-hidden shadow-lg shadow-emerald-950/50">
+                <div class="text-[10px] font-bold text-yellow-300 uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-wallet text-emerald-400"></i> Total Líquido Mês
+                </div>
+                <div class="text-xl md:text-2xl font-black text-emerald-400" id="metric-liquido-total">
+                    R$ 0,00
+                </div>
+                <div class="text-[10px] text-emerald-300/90 mt-0.5 font-bold">Valor Final a Receber</div>
+            </div>
+        </section>
+
+        <!-- TAB 1: RESUMO (SEMANAS, MÊS E ANOS) [DEFAULT TABS] -->
+        <div id="main-tab-resumo" class="space-y-4">
+            
+            <!-- SECTION 1: RESUMO SEMANAL -->
+            <section class="bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
+                <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-calendar-week text-xs"></i>
+                        </div>
+                        <h2 class="text-xs font-black text-white uppercase tracking-wider">
+                            Resumo Semanal - <span class="text-yellow-400" id="resumo-semanal-month-title">Julho de 2026</span>
+                        </h2>
+                    </div>
+                    <span class="text-[11px] text-slate-400 italic">Detalhamento por semana do mês</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5" id="resumo-semanal-cards-container">
+                    <!-- Dynamic Weekly Cards (Semana 1 to Semana 5) -->
+                </div>
+            </section>
+
+            <!-- SECTION 2 & 3: RESUMO MENSAL & RESUMO ANUAL (2 COLUMNS) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+                
+                <!-- LEFT 5 COLUMNS: RESUMO MENSAL CONSOLIDADO -->
+                <section class="lg:col-span-5 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
+                    <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-7 h-7 rounded-lg bg-yellow-400/20 border border-yellow-400/40 flex items-center justify-center text-yellow-400">
+                                <i class="fa-solid fa-chart-line text-xs"></i>
+                            </div>
+                            <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Mensal de Ganhos</h2>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-cbta-panel p-2.5 rounded-lg border border-cbta-border flex justify-between items-center">
+                            <span class="text-slate-300 font-bold">Faturamento Bruto Mês:</span>
+                            <span class="font-black text-white text-sm" id="resumo-mensal-bruto">R$ 0,00</span>
+                        </div>
+                        <div class="bg-cbta-panel p-2.5 rounded-lg border border-cbta-border flex justify-between items-center">
+                            <span class="text-slate-300 font-bold">Participação Araújo (4.0):</span>
+                            <span class="font-black text-emerald-400" id="resumo-mensal-araujo">R$ 0,00</span>
+                        </div>
+                        <div class="bg-cbta-panel p-2.5 rounded-lg border border-cbta-border flex justify-between items-center">
+                            <span class="text-slate-300 font-bold">Participação Lojas CBTA:</span>
+                            <span class="font-black text-yellow-400" id="resumo-mensal-lojas">R$ 0,00</span>
+                        </div>
+                        <div class="bg-cbta-panel p-2.5 rounded-lg border border-cbta-border flex justify-between items-center">
+                            <span class="text-slate-300 font-bold">Descontos da Cooperativa:</span>
+                            <span class="font-black text-rose-400" id="resumo-mensal-descontos">R$ 0,00</span>
+                        </div>
+                        <div class="bg-gradient-to-r from-emerald-950 to-cbta-panel p-3 rounded-lg border border-emerald-500/50 flex justify-between items-center">
+                            <span class="text-emerald-300 font-extrabold uppercase">Total Líquido Final:</span>
+                            <span class="font-black text-emerald-400 text-base" id="resumo-mensal-liquido">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <!-- Store Distribution Bar -->
+                    <div class="pt-2 border-t border-cbta-border space-y-1.5">
+                        <div class="flex justify-between text-[11px] font-bold">
+                            <span class="text-slate-300">Distribuição Araújo vs Lojas</span>
+                            <span class="text-emerald-400" id="resumo-pct-araujo">50% Araújo / 50% Lojas</span>
+                        </div>
+                        <div class="w-full bg-cbta-bg h-3 rounded-full overflow-hidden flex p-0.5 border border-cbta-border">
+                            <div id="bar-pct-araujo" class="bg-emerald-500 h-full rounded-l" style="width: 50%;"></div>
+                            <div id="bar-pct-lojas" class="bg-yellow-400 h-full rounded-r" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL (2026 CONSOLIDADO) -->
+                <section class="lg:col-span-7 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
+                    <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-calendar-days text-xs"></i>
+                            </div>
+                            <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Anual Consolidado 2026</h2>
+                        </div>
+                        <span class="text-[11px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
+                            Ano 2026
+                        </span>
+                    </div>
+
+                    <!-- Annual Table Comparison -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr class="bg-cbta-panel text-slate-300 border-b border-cbta-border font-black text-[11px] uppercase">
+                                    <th class="py-2 px-2.5">Mês</th>
+                                    <th class="py-2 px-2.5">Araújo (4.0)</th>
+                                    <th class="py-2 px-2.5">Lojas CBTA</th>
+                                    <th class="py-2 px-2.5">Descontos</th>
+                                    <th class="py-2 px-2.5 text-right">Líquido</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resumo-anual-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
+                                <!-- Dynamic Annual Months Rows -->
+                            </tbody>
+                            <tfoot class="bg-cbta-panel font-black text-white border-t-2 border-emerald-500/50">
+                                <tr>
+                                    <td class="py-2.5 px-2.5">TOTAL 2026</td>
+                                    <td class="py-2.5 px-2.5 text-emerald-400" id="anual-total-araujo">R$ 0,00</td>
+                                    <td class="py-2.5 px-2.5 text-yellow-400" id="anual-total-lojas">R$ 0,00</td>
+                                    <td class="py-2.5 px-2.5 text-rose-400" id="anual-total-descontos">R$ 0,00</td>
+                                    <td class="py-2.5 px-2.5 text-right text-emerald-400 font-extrabold" id="anual-total-liquido">R$ 0,00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- TAB 2: PLANILHA DE GANHOS / CALENDÁRIO & EDIT PANEL -->
+        <div id="main-tab-planilha" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+            
+            <!-- LEFT 7 COLUMNS: CALENDAR SPREADSHEET -->
+            <section class="lg:col-span-7 bg-cbta-card p-3 rounded-xl border border-cbta-border shadow-lg space-y-3">
+                <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-calendar-days text-emerald-400 text-sm"></i>
+                        <h2 class="text-xs font-black text-white uppercase tracking-wider" id="calendar-title-display">Julho de 2026</h2>
+                    </div>
+                    <div class="text-[11px] text-slate-400 italic">
+                        * Clique em um dia para lançar ou ver detalhes
+                    </div>
+                </div>
+
+                <!-- Store Color Legend -->
+                <div class="flex flex-wrap gap-1.5 text-[10px] font-bold pb-1">
+                    <span class="px-2 py-0.5 rounded badge-araujo">Araújo (4.0)</span>
+                    <span class="px-2 py-0.5 rounded badge-dominos">Domino's</span>
+                    <span class="px-2 py-0.5 rounded badge-pizzarone">Pizzarone</span>
+                    <span class="px-2 py-0.5 rounded badge-pizzahut">Pizza Hut</span>
+                    <span class="px-2 py-0.5 rounded badge-olegario">Pizzaria Olegário</span>
+                    <span class="px-2 py-0.5 rounded badge-altogiro">Auto Giro</span>
+                    <span class="px-2 py-0.5 rounded badge-barroca">Pizzaiolo Barroca</span>
+                </div>
+
+                <!-- Calendar Sheet Grid -->
+                <div class="overflow-x-auto">
+                    <div class="min-w-[480px]">
+                        <!-- Weekdays -->
+                        <div class="grid grid-cols-7 gap-1 text-center font-black text-[11px] text-slate-3    <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #081226;
