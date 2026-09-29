@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
@@ -69,6 +68,7 @@
         .badge-olegario { background-color: #D97706; color: #FFFFFF; }
         .badge-altogiro { background-color: #EAB308; color: #000000; font-weight: 800; }
         .badge-barroca { background-color: #0D9488; color: #FFFFFF; }
+        .badge-folga { background-color: #10B981; color: #0B1329; font-weight: 800; }
 
         /* Excel Bottom Tabs Styling */
         .excel-tab-active {
@@ -346,6 +346,7 @@
                     <span class="px-2 py-0.5 rounded badge-olegario">Pizzaria Olegário</span>
                     <span class="px-2 py-0.5 rounded badge-altogiro">Auto Giro</span>
                     <span class="px-2 py-0.5 rounded badge-barroca">Pizzaiolo Barroca</span>
+                    <span class="px-2 py-0.5 rounded badge-folga">Folga (F)</span>
                 </div>
 
                 <!-- Calendar Sheet Grid -->
@@ -402,18 +403,22 @@
                 </div>
 
                 <!-- ENTRY MODE SELECTOR TABS -->
-                <div class="grid grid-cols-2 gap-1 p-1 bg-cbta-bg rounded-lg border border-cbta-border">
+                <div class="grid grid-cols-3 gap-1 p-1 bg-cbta-bg rounded-lg border border-cbta-border">
                     <button id="btn-mode-araujo" onclick="switchEntryMode('araujo')" class="py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-blue-600 text-white shadow">
                         <i class="fa-solid fa-calculator text-xs"></i>
-                        <span>Ganhos Araújo (4.0)</span>
+                        <span>Araújo (4.0)</span>
                     </button>
                     <button id="btn-mode-lojas" onclick="switchEntryMode('lojas')" class="py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white">
                         <i class="fa-solid fa-store text-xs"></i>
                         <span>Lojas CBTA</span>
                     </button>
+                    <button id="btn-mode-folga" onclick="switchEntryMode('folga')" class="py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-mug-hot text-xs"></i>
+                        <span>Folga</span>
+                    </button>
                 </div>
 
-                <!-- FORM ARAÚJO 4.0 (EXACT RATES TABLE & FIXED NUMERIC CALCULATION) -->
+                <!-- FORM ARAÚJO 4.0 -->
                 <form id="form-araujo-container" onsubmit="saveAraujoEntry(event)" class="space-y-3">
                     <div class="bg-cbta-panel rounded-lg border border-blue-500/30 p-2.5 space-y-2">
                         <div class="flex items-center justify-between border-b border-cbta-border pb-1.5">
@@ -424,7 +429,6 @@
                         </div>
 
                         <div class="space-y-1.5 text-xs">
-                            <!-- Item 1: Bandeirada -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">BANDEIRADA</span>
@@ -433,7 +437,6 @@
                                 <input type="number" min="0" step="1" id="rate-bandeirada" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 2: Ponto Adicional -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">PONTO ADICIONAL</span>
@@ -442,7 +445,6 @@
                                 <input type="number" min="0" step="1" id="rate-ponto-add" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 3: Retorno Normal -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">RETORNO NORMAL</span>
@@ -451,7 +453,6 @@
                                 <input type="number" min="0" step="1" id="rate-retorno-norm" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 4: KM Rodado -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">KM RODADO</span>
@@ -460,7 +461,6 @@
                                 <input type="number" min="0" step="0.1" id="rate-km" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 5: Bandeirada Dinheiro -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">BANDEIRADA DINHEIRO</span>
@@ -469,7 +469,6 @@
                                 <input type="number" min="0" step="1" id="rate-bandeirada-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 6: Ponto Adicional Dinheiro -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">PONTO ADICIONAL DINHEIRO</span>
@@ -478,7 +477,6 @@
                                 <input type="number" min="0" step="1" id="rate-ponto-add-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
-                            <!-- Item 7: Retorno Dinheiro (CORRECTED BUG IMPLEMENTATION) -->
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">RETORNO DINHEIRO</span>
@@ -488,7 +486,6 @@
                             </div>
                         </div>
 
-                        <!-- LIVE RESULT: SOMA DE GANHO 4.0 -->
                         <div class="bg-blue-950/80 border border-blue-500/50 rounded-lg p-2.5 flex items-center justify-between mt-2">
                             <span class="text-xs font-black text-blue-200 uppercase">SOMA DE GANHO 4.0</span>
                             <span class="text-lg font-black text-yellow-400" id="live-araujo-sum">R$ 0,00</span>
@@ -532,7 +529,6 @@
                             <input type="number" min="0" step="0.01" id="loja-valor-total" oninput="calcLojaTotalDirect()" placeholder="Ou digite o valor total final" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-black text-yellow-400 focus:outline-none">
                         </div>
 
-                        <!-- LIVE RESULT LOJA -->
                         <div class="bg-amber-950/60 border border-yellow-500/40 rounded-lg p-2.5 flex items-center justify-between">
                             <span class="text-xs font-black text-yellow-200 uppercase">Faturamento Loja</span>
                             <span class="text-lg font-black text-emerald-400" id="live-loja-sum">R$ 0,00</span>
@@ -544,6 +540,24 @@
                         <span>SALVAR GANHO DA LOJA</span>
                     </button>
                 </form>
+
+                <!-- FORM / PAINEL DE FOLGA -->
+                <div id="form-folga-container" class="hidden space-y-3">
+                    <div class="bg-emerald-950/40 border border-emerald-500/50 rounded-lg p-4 text-center space-y-2">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center mx-auto text-emerald-400 text-xl font-black">
+                            F
+                        </div>
+                        <h3 class="text-xs font-black text-emerald-300 uppercase">Marcar Dia de Folga</h3>
+                        <p class="text-[11px] text-slate-300">
+                            Ao confirmar, o dia selecionado no calendário ficará verde com a letra <strong class="text-emerald-400">F</strong>.
+                        </p>
+                    </div>
+
+                    <button type="button" onclick="saveFolgaEntry()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs py-2.5 px-3 rounded-lg shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        <span>LANCAR FOLGA NESTE DIA</span>
+                    </button>
+                </div>
 
                 <div class="border-t border-cbta-border pt-2 space-y-2">
                     <div class="flex items-center justify-between">
@@ -605,7 +619,7 @@
     <!-- EXCEL MONTH TABS BOTTOM FOOTER -->
     <footer class="fixed bottom-0 left-0 right-0 bg-cbta-card border-t border-cbta-border z-40">
         <div class="max-w-7xl mx-auto px-2 flex items-center overflow-x-auto space-x-1 py-1" id="excel-tabs-container">
-            <!-- Tabs MAIO, JUNHO, JULHO, AGOSTO dynamically created -->
+            <!-- Dynamic Month Tabs -->
         </div>
     </footer>
 
@@ -651,10 +665,10 @@
         const STORAGE_ENTRIES = 'cbta_2026_ganhos_v4_entries';
         const STORAGE_DISCOUNTS = 'cbta_2026_ganhos_v4_discounts';
 
-        let currentMainTab = 'resumo'; // 'resumo', 'planilha', 'historico'
-        let currentMonthKey = '2026-07'; // Default July 2026
+        let currentMainTab = 'resumo';
+        let currentMonthKey = '2026-07';
         let selectedDateStr = '2026-07-01';
-        let currentMode = 'araujo'; // 'araujo' or 'lojas'
+        let currentMode = 'araujo'; // 'araujo', 'lojas', 'folga'
 
         let entries = [];
         let discounts = [];
@@ -677,7 +691,6 @@
             '2026-10': 'Outubro de 2026'
         };
 
-        /* Standard Rates for Araújo 4.0 */
         const RATES = {
             bandeirada: 7.90,
             pontoAdd: 6.25,
@@ -688,7 +701,6 @@
             retornoDin: 9.00
         };
 
-        /* Initial Seed Data for demonstration */
         function getInitialData() {
             return [
                 {
@@ -806,7 +818,10 @@
         function saveEntries() { localStorage.setItem(STORAGE_ENTRIES, JSON.stringify(entries)); }
         function saveDiscounts() { localStorage.setItem(STORAGE_DISCOUNTS, JSON.stringify(discounts)); }
 
-        // Main Navigation Switching
+        function formatCurrency(val) {
+            return (val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
         function switchMainTab(tab) {
             currentMainTab = tab;
             const btnResumo = document.getElementById('nav-btn-resumo');
@@ -884,23 +899,26 @@
             currentMode = mode;
             const btnAraujo = document.getElementById('btn-mode-araujo');
             const btnLojas = document.getElementById('btn-mode-lojas');
+            const btnFolga = document.getElementById('btn-mode-folga');
             const formAraujo = document.getElementById('form-araujo-container');
             const formLojas = document.getElementById('form-lojas-container');
+            const formFolga = document.getElementById('form-folga-container');
+
+            [btnAraujo, btnLojas, btnFolga].forEach(b => b.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white');
+            [formAraujo, formLojas, formFolga].forEach(f => f.classList.add('hidden'));
 
             if (mode === 'araujo') {
                 btnAraujo.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-blue-600 text-white shadow';
-                btnLojas.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white';
                 formAraujo.classList.remove('hidden');
-                formLojas.classList.add('hidden');
-            } else {
+            } else if (mode === 'lojas') {
                 btnLojas.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-yellow-400 text-slate-950 shadow';
-                btnAraujo.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 text-slate-400 hover:text-white';
                 formLojas.classList.remove('hidden');
-                formAraujo.classList.add('hidden');
+            } else if (mode === 'folga') {
+                btnFolga.className = 'py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-emerald-500 text-slate-950 shadow';
+                formFolga.classList.remove('hidden');
             }
         }
 
-        /* Helper to safely parse float numbers without NaN errors */
         function safeVal(elementId) {
             const el = document.getElementById(elementId);
             if (!el || !el.value) return 0;
@@ -909,7 +927,6 @@
             return isNaN(parsed) ? 0 : parsed;
         }
 
-        /* Calculation Logic for Araújo 4.0 Form (FIXED BUGS) */
         function calcAraujoTotal() {
             const b = safeVal('rate-bandeirada') * RATES.bandeirada;
             const pa = safeVal('rate-ponto-add') * RATES.pontoAdd;
@@ -917,14 +934,13 @@
             const km = safeVal('rate-km') * RATES.km;
             const bd = safeVal('rate-bandeirada-din') * RATES.bandeiradaDin;
             const pad = safeVal('rate-ponto-add-din') * RATES.pontoAddDin;
-            const rd = safeVal('rate-retorno-din') * RATES.retornoDin; // Fixed Retorno Dinheiro
+            const rd = safeVal('rate-retorno-din') * RATES.retornoDin;
 
             const total = b + pa + rn + km + bd + pad + rd;
             document.getElementById('live-araujo-sum').innerText = formatCurrency(total);
             return total;
         }
 
-        /* Calculation Logic for Lojas Form */
         function calcLojaTotal() {
             const qty = safeVal('loja-entregas-qty');
             const rate = safeVal('loja-valor-corrida');
@@ -1026,6 +1042,29 @@
             document.getElementById('live-loja-sum').innerText = formatCurrency(0);
         }
 
+        function saveFolgaEntry() {
+            const turno = document.getElementById('form-turno-input').value;
+            
+            const existingFolga = entries.find(e => e.date === selectedDateStr && e.type === 'folga');
+            if (existingFolga) {
+                alert('Sua folga já está registrada neste dia!');
+                return;
+            }
+
+            const newEntry = {
+                id: 'e_' + Date.now(),
+                date: selectedDateStr,
+                type: 'folga',
+                turno: turno,
+                estab: 'Folga',
+                valor: 0
+            };
+
+            entries.push(newEntry);
+            saveEntries();
+            renderDashboard();
+        }
+
         function deleteEntry(id) {
             entries = entries.filter(e => e.id !== id);
             saveEntries();
@@ -1041,7 +1080,7 @@
             currentMonthEntries.forEach(item => {
                 if (item.type === 'araujo' || item.estab.includes('Araújo')) {
                     totalAraujo += item.valor;
-                } else {
+                } else if (item.type === 'lojas') {
                     totalLojas += item.valor;
                 }
             });
@@ -1050,29 +1089,24 @@
             const totalDescontos = currentDiscounts.reduce((sum, d) => sum + (d.valor || 0), 0);
             const totalLiquido = (totalAraujo + totalLojas) - totalDescontos;
 
-            // Header Top Metrics
             document.getElementById('metric-araujo-total').innerText = formatCurrency(totalAraujo);
             document.getElementById('metric-lojas-total').innerText = formatCurrency(totalLojas);
             document.getElementById('metric-descontos-total').innerText = formatCurrency(totalDescontos);
             document.getElementById('metric-liquido-total').innerText = formatCurrency(totalLiquido);
 
-            // Tab 1 Resumos
             renderResumoSemanal(currentMonthEntries);
             renderResumoMensal(totalAraujo, totalLojas, totalDescontos, totalLiquido);
             renderResumoAnual();
 
-            // Tab 2 Planilha
             renderCalendarGrid();
             renderDayEntriesList();
             renderDiscountsList();
 
-            // Tab 3 Histórico (if visible)
             if (currentMainTab === 'historico') {
                 renderHistoryTable();
             }
         }
 
-        /* Render Resumo Semanal (Week 1 to Week 5) */
         function renderResumoSemanal(monthEntries) {
             const container = document.getElementById('resumo-semanal-cards-container');
             container.innerHTML = '';
@@ -1080,7 +1114,6 @@
             const [year, month] = currentMonthKey.split('-').map(Number);
             const daysInMonth = new Date(year, month, 0).getDate();
 
-            // Divide month into 5 weekly brackets (1-7, 8-14, 15-21, 22-28, 29-end)
             const weeks = [
                 { title: 'Semana 1', start: 1, end: 7 },
                 { title: 'Semana 2', start: 8, end: 14 },
@@ -1089,7 +1122,7 @@
                 { title: 'Semana 5', start: 29, end: daysInMonth }
             ];
 
-            weeks.forEach((w, idx) => {
+            weeks.forEach((w) => {
                 const weekEntries = monthEntries.filter(e => {
                     const day = parseInt(e.date.split('-')[2]);
                     return day >= w.start && day <= w.end;
@@ -1100,7 +1133,7 @@
                 weekEntries.forEach(item => {
                     if (item.type === 'araujo' || item.estab.includes('Araújo')) {
                         weekAraujo += item.valor;
-                    } else {
+                    } else if (item.type === 'lojas') {
                         weekLojas += item.valor;
                     }
                 });
@@ -1131,7 +1164,6 @@
             });
         }
 
-        /* Render Resumo Mensal */
         function renderResumoMensal(araujo, lojas, descontos, liquido) {
             const bruto = araujo + lojas;
             document.getElementById('resumo-mensal-bruto').innerText = formatCurrency(bruto);
@@ -1153,7 +1185,6 @@
             document.getElementById('bar-pct-lojas').style.width = `${pctLojas}%`;
         }
 
-        /* Render Resumo Anual 2026 */
         function renderResumoAnual() {
             const tbody = document.getElementById('resumo-anual-table-body');
             tbody.innerHTML = '';
@@ -1170,7 +1201,7 @@
 
                 monthEntries.forEach(item => {
                     if (item.type === 'araujo' || item.estab.includes('Araújo')) mAraujo += item.valor;
-                    else mLojas += item.valor;
+                    else if (item.type === 'lojas') mLojas += item.valor;
                 });
 
                 const mDiscounts = discounts.filter(d => d.month === mKey);
@@ -1205,167 +1236,136 @@
             document.getElementById('anual-total-liquido').innerText = formatCurrency(grandLiquido);
         }
 
+        /* CALENDAR GRID RENDERER */
         function renderCalendarGrid() {
             const grid = document.getElementById('calendar-days-grid');
             grid.innerHTML = '';
 
             const [year, month] = currentMonthKey.split('-').map(Number);
-            const firstDayIndex = new Date(year, month - 1, 1).getDay();
-            const mondayOffset = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+            
+            const firstDayIndex = new Date(year, month - 1, 1).getDay(); // 0 = Dom, 1 = Seg...
             const daysInMonth = new Date(year, month, 0).getDate();
 
-            // Empty cells for alignment
-            for (let i = 0; i < mondayOffset; i++) {
+            // Convert Sunday=0 to Monday=0 index
+            const offset = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+
+            // Empty padding cells
+            for (let i = 0; i < offset; i++) {
                 const emptyCell = document.createElement('div');
-                emptyCell.className = 'min-h-[75px] bg-cbta-bg/30 border border-cbta-border/20 rounded p-1 opacity-20';
+                emptyCell.className = 'bg-cbta-card/30 rounded border border-cbta-border/30 min-h-[70px]';
                 grid.appendChild(emptyCell);
             }
 
+            // Days cells
             for (let day = 1; day <= daysInMonth; day++) {
-                const dayStr = String(day).padStart(2, '0');
-                const fullDate = `${currentMonthKey}-${dayStr}`;
+                const dayStr = day < 10 ? `0${day}` : `${day}`;
+                const fullDateStr = `${currentMonthKey}-${dayStr}`;
 
-                const dayEntries = entries.filter(e => e.date === fullDate);
-                const dayTotal = dayEntries.reduce((sum, e) => sum + e.valor, 0);
-
-                const isSelected = (fullDate === selectedDateStr);
+                const dayEntries = entries.filter(e => e.date === fullDateStr);
+                const hasFolga = dayEntries.some(e => e.type === 'folga');
+                const isSelected = (fullDateStr === selectedDateStr);
 
                 const dayCell = document.createElement('div');
-                dayCell.className = `min-h-[85px] bg-cbta-panel border rounded p-1 flex flex-col justify-between transition cursor-pointer ${
-                    isSelected ? 'border-yellow-400 bg-cbta-panel/90 ring-2 ring-yellow-400/50' : 'border-cbta-border hover:border-emerald-400'
-                }`;
-                dayCell.onclick = () => selectDate(fullDate);
-
-                let headerHtml = `
-                    <div class="flex items-center justify-between border-b border-cbta-border/50 pb-0.5 mb-1">
-                        <span class="font-black text-[11px] ${isSelected ? 'text-yellow-400' : 'text-white'}">${day}</span>
-                        ${dayTotal > 0 ? `<span class="text-[9px] font-black text-emerald-400">R$ ${dayTotal.toFixed(2)}</span>` : ''}
-                    </div>
-                `;
-
-                let contentHtml = `<div class="space-y-0.5 overflow-y-auto max-h-[55px]">`;
-
-                if (dayEntries.length === 0) {
-                    contentHtml += `<div class="text-[9px] text-slate-500 italic text-center py-2">+ Lançar</div>`;
+                
+                // If day is Folga -> Full Green Cell
+                if (hasFolga) {
+                    dayCell.className = `min-h-[70px] p-1.5 rounded cursor-pointer transition flex flex-col justify-between bg-emerald-500 border-2 text-cbta-bg shadow-lg ${isSelected ? 'border-yellow-400 scale-[1.02]' : 'border-emerald-400 hover:brightness-110'}`;
+                    
+                    dayCell.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <span class="font-black text-xs text-cbta-bg">${day}</span>
+                            <span class="text-[9px] bg-cbta-bg text-emerald-400 font-extrabold px-1 rounded">Folga</span>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center my-1">
+                            <span class="text-3xl font-black text-cbta-bg leading-none tracking-tighter">F</span>
+                        </div>
+                        <div class="text-[9px] font-black text-center text-cbta-bg/80 uppercase">
+                            Descanso
+                        </div>
+                    `;
                 } else {
-                    dayEntries.forEach(item => {
-                        const badgeClass = getBadgeClassForStore(item.estab);
-                        contentHtml += `
-                            <div class="p-0.5 rounded text-[9px] font-bold flex items-center justify-between ${badgeClass} shadow-sm">
-                                <span class="truncate max-w-[55px]">${item.estab}</span>
-                                <span>R$${item.valor.toFixed(0)}</span>
-                            </div>
-                        `;
-                    });
-                }
-                contentHtml += `</div>`;
+                    let totalGanhosDia = 0;
+                    dayEntries.forEach(e => totalGanhosDia += e.valor);
 
-                dayCell.innerHTML = headerHtml + contentHtml;
+                    dayCell.className = `min-h-[70px] p-1 rounded cursor-pointer transition flex flex-col justify-between border ${isSelected ? 'bg-cbta-panel border-yellow-400 ring-2 ring-yellow-400/30' : 'bg-cbta-panel/80 border-cbta-border hover:border-emerald-500/50'}`;
+
+                    let badgesHtml = '';
+                    dayEntries.forEach(e => {
+                        let badgeClass = 'bg-slate-700 text-white';
+                        if (e.estab.includes('Araújo')) badgeClass = 'badge-araujo';
+                        else if (e.estab.includes("Domino's")) badgeClass = 'badge-dominos';
+                        else if (e.estab.includes('Pizzarone')) badgeClass = 'badge-pizzarone';
+                        else if (e.estab.includes('Pizza Hut')) badgeClass = 'badge-pizzahut';
+                        else if (e.estab.includes('Olegário')) badgeClass = 'badge-olegario';
+                        else if (e.estab.includes('Auto Giro')) badgeClass = 'badge-altogiro';
+                        else if (e.estab.includes('Barroca')) badgeClass = 'badge-barroca';
+
+                        badgesHtml += `<span class="px-1 py-0.5 rounded text-[8px] font-bold truncate block ${badgeClass}">${e.estab}</span>`;
+                    });
+
+                    dayCell.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xs ${isSelected ? 'text-yellow-400' : 'text-slate-200'}">${day}</span>
+                            ${totalGanhosDia > 0 ? `<span class="text-[9px] font-black text-emerald-400">R$${totalGanhosDia.toFixed(0)}</span>` : ''}
+                        </div>
+                        <div class="space-y-0.5 my-1 overflow-hidden max-h-[36px]">
+                            ${badgesHtml}
+                        </div>
+                        <div></div>
+                    `;
+                }
+
+                dayCell.onclick = () => selectDate(fullDateStr);
                 grid.appendChild(dayCell);
             }
         }
 
-        function getBadgeClassForStore(estab) {
-            if (estab.includes('Araújo')) return 'badge-araujo';
-            if (estab.includes('Domino')) return 'badge-dominos';
-            if (estab.includes('Pizzarone')) return 'badge-pizzarone';
-            if (estab.includes('Hut')) return 'badge-pizzahut';
-            if (estab.includes('Olegário')) return 'badge-olegario';
-            if (estab.includes('Auto')) return 'badge-altogiro';
-            if (estab.includes('Barroca')) return 'badge-barroca';
-            return 'badge-araujo';
-        }
-
+        /* Render Day Entries List */
         function renderDayEntriesList() {
-            const container = document.getElementById('day-entries-list');
-            container.innerHTML = '';
+            const listContainer = document.getElementById('day-entries-list');
+            const countBadge = document.getElementById('day-entries-count');
+            listContainer.innerHTML = '';
 
             const dayEntries = entries.filter(e => e.date === selectedDateStr);
-            document.getElementById('day-entries-count').innerText = `${dayEntries.length} lançamentos`;
+            countBadge.innerText = `${dayEntries.length} itens`;
 
             if (dayEntries.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-3 text-xs text-slate-500 italic bg-cbta-bg/40 rounded border border-cbta-border/40">
-                        Nenhum ganho registrado nesta data.
-                    </div>
-                `;
+                listContainer.innerHTML = `<div class="text-[11px] text-slate-400 italic py-2 text-center bg-cbta-bg/40 rounded border border-cbta-border/40">Nenhum lançamento nesta data.</div>`;
                 return;
             }
 
-            dayEntries.forEach(item => {
-                const badgeClass = getBadgeClassForStore(item.estab);
-                const div = document.createElement('div');
-                div.className = 'p-2 bg-cbta-panel rounded border border-cbta-border flex items-center justify-between text-xs';
+            dayEntries.forEach(e => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'bg-cbta-panel p-2 rounded border border-cbta-border flex items-center justify-between text-xs space-x-2';
 
-                let detailsText = item.turno;
-                if (item.type === 'lojas' && item.entregas) {
-                    detailsText += ` • ${item.entregas} entregas`;
-                }
+                let detailsText = '';
+                if (e.type === 'araujo') detailsText = 'Ganhos Tabela Araújo 4.0';
+                else if (e.type === 'lojas') detailsText = `${e.entregas || 0} entregas (${formatCurrency(e.valorCorrida || 0)}/corrida)`;
+                else if (e.type === 'folga') detailsText = 'Dia de Folga Registrado';
 
-                div.innerHTML = `
-                    <div class="space-y-0.5">
-                        <div class="flex items-center space-x-1.5">
-                            <span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold ${badgeClass}">${item.estab}</span>
-                            <span class="text-[10px] text-slate-300 font-semibold">${detailsText}</span>
+                itemDiv.innerHTML = `
+                    <div class="flex items-center space-x-2 overflow-hidden">
+                        <div class="w-2 h-2 rounded-full ${e.type === 'folga' ? 'bg-emerald-400' : e.type === 'araujo' ? 'bg-blue-500' : 'bg-yellow-400'} shrink-0"></div>
+                        <div class="truncate">
+                            <div class="font-black text-white flex items-center gap-1.5">
+                                <span>${e.estab}</span>
+                                <span class="text-[9px] text-slate-400 font-normal">(${e.turno || 'Sem turno'})</span>
+                            </div>
+                            <div class="text-[10px] text-slate-400">${detailsText}</div>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="font-black text-emerald-400 text-xs">${formatCurrency(item.valor)}</span>
-                        <button onclick="deleteEntry('${item.id}')" class="text-slate-400 hover:text-rose-400 text-xs p-1" title="Excluir">
-                            <i class="fa-solid fa-trash-can"></i>
+                    <div class="flex items-center space-x-2 shrink-0">
+                        <span class="font-black ${e.type === 'folga' ? 'text-emerald-400' : 'text-emerald-400'}">${formatCurrency(e.valor)}</span>
+                        <button onclick="deleteEntry('${e.id}')" class="text-rose-400 hover:text-rose-300 p-1">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </div>
                 `;
-                container.appendChild(div);
+                listContainer.appendChild(itemDiv);
             });
         }
 
-        /* Render History Table (Tab 3 Oculta) */
-        function renderHistoryTable() {
-            const tbody = document.getElementById('history-table-body');
-            tbody.innerHTML = '';
-
-            const search = (document.getElementById('history-search')?.value || '').toLowerCase();
-
-            let filtered = entries.filter(e => e.estab.toLowerCase().includes(search));
-            filtered.sort((a, b) => b.date.localeCompare(a.date));
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="text-center py-4 text-slate-500 italic">Nenhum registro encontrado.</td>
-                    </tr>
-                `;
-                return;
-            }
-
-            filtered.forEach(item => {
-                const badgeClass = getBadgeClassForStore(item.estab);
-                const [y, m, d] = item.date.split('-');
-
-                let detailsStr = item.type === 'araujo' ? 'Tabela Araújo 4.0' : `${item.entregas || 0} entregas`;
-
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-cbta-panel/50 border-b border-cbta-border/40';
-                tr.innerHTML = `
-                    <td class="py-2 px-3 font-bold text-yellow-400">${d}/${m}/${y}</td>
-                    <td class="py-2 px-3">${item.turno}</td>
-                    <td class="py-2 px-3">
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">${item.estab}</span>
-                    </td>
-                    <td class="py-2 px-3 text-slate-400 text-[11px]">${detailsStr}</td>
-                    <td class="py-2 px-3 font-black text-emerald-400">${formatCurrency(item.valor)}</td>
-                    <td class="py-2 px-3 text-right">
-                        <button onclick="deleteEntry('${item.id}')" class="text-slate-400 hover:text-rose-400 text-xs">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        /* Discount Modal Logic */
+        /* MODAL DISCOUNT FUNCTIONS */
         function openDiscountModal() {
             document.getElementById('discount-modal').classList.remove('hidden');
             renderDiscountsList();
@@ -1377,79 +1377,125 @@
 
         function saveDiscount(e) {
             e.preventDefault();
-            const desc = document.getElementById('disc-desc').value.trim();
+            const desc = document.getElementById('disc-desc').value;
             const val = safeVal('disc-val');
 
             if (!desc || val <= 0) return;
 
-            discounts.push({
+            const newDiscount = {
                 id: 'd_' + Date.now(),
                 month: currentMonthKey,
                 desc: desc,
                 valor: val
-            });
+            };
 
+            discounts.push(newDiscount);
             saveDiscounts();
+
             document.getElementById('disc-desc').value = '';
             document.getElementById('disc-val').value = '';
+
+            renderDiscountsList();
             renderDashboard();
         }
 
         function deleteDiscount(id) {
             discounts = discounts.filter(d => d.id !== id);
             saveDiscounts();
+            renderDiscountsList();
             renderDashboard();
         }
 
         function renderDiscountsList() {
             const container = document.getElementById('discounts-list-container');
+            if (!container) return;
             container.innerHTML = '';
 
-            const currentDisc = discounts.filter(d => d.month === currentMonthKey);
-            if (currentDisc.length === 0) {
-                container.innerHTML = `<div class="text-[10px] text-slate-500 italic py-1">Sem descontos cadastrados neste mês.</div>`;
+            const currentDiscounts = discounts.filter(d => d.month === currentMonthKey);
+
+            if (currentDiscounts.length === 0) {
+                container.innerHTML = `<div class="text-[10px] text-slate-400 italic py-1">Nenhum desconto lançado neste mês.</div>`;
                 return;
             }
 
-            currentDisc.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'p-1.5 bg-cbta-bg rounded border border-cbta-border flex items-center justify-between text-xs';
-                div.innerHTML = `
-                    <span class="text-slate-300 font-semibold text-[11px]">${item.desc}</span>
-                    <div class="flex items-center space-x-2">
-                        <span class="font-bold text-rose-400 text-xs">${formatCurrency(item.valor)}</span>
-                        <button onclick="deleteDiscount('${item.id}')" class="text-slate-400 hover:text-rose-400">
+            currentDiscounts.forEach(d => {
+                const row = document.createElement('div');
+                row.className = 'bg-cbta-bg p-1.5 rounded border border-cbta-border flex justify-between items-center text-xs';
+                row.innerHTML = `
+                    <span class="text-slate-300 font-bold truncate">${d.desc}</span>
+                    <div class="flex items-center space-x-2 shrink-0">
+                        <span class="font-black text-rose-400">${formatCurrency(d.valor)}</span>
+                        <button onclick="deleteDiscount('${d.id}')" class="text-rose-400 hover:text-rose-300">
                             <i class="fa-solid fa-xmark text-xs"></i>
                         </button>
                     </div>
                 `;
-                container.appendChild(div);
+                container.appendChild(row);
+            });
+        }
+
+        /* HISTÓRICO TAB FUNCTIONS */
+        function renderHistoryTable() {
+            const tbody = document.getElementById('history-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const query = (document.getElementById('history-search')?.value || '').toLowerCase();
+
+            const filtered = entries.filter(e => {
+                return e.estab.toLowerCase().includes(query) || e.date.includes(query);
+            }).sort((a, b) => b.date.localeCompare(a.date));
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-slate-400 italic">Nenhum registro encontrado.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(e => {
+                const [y, m, d] = e.date.split('-');
+                const formattedDate = `${d}/${m}/${y}`;
+
+                let details = '';
+                if (e.type === 'araujo') details = 'Lançamento por Tabela Araújo 4.0';
+                else if (e.type === 'lojas') details = `${e.entregas || 0} corridas x ${formatCurrency(e.valorCorrida || 0)}`;
+                else if (e.type === 'folga') details = 'Folga Semanal';
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-cbta-panel/60 transition';
+                tr.innerHTML = `
+                    <td class="py-2.5 px-3 font-bold text-slate-300">${formattedDate}</td>
+                    <td class="py-2.5 px-3 text-slate-400">${e.turno || '-'}</td>
+                    <td class="py-2.5 px-3 font-black text-white">${e.estab}</td>
+                    <td class="py-2.5 px-3 text-slate-400">${details}</td>
+                    <td class="py-2.5 px-3 font-black ${e.type === 'folga' ? 'text-emerald-400' : 'text-emerald-400'}">${formatCurrency(e.valor)}</td>
+                    <td class="py-2.5 px-3 text-right">
+                        <button onclick="deleteEntry('${e.id}')" class="text-rose-400 hover:text-rose-300 font-bold text-xs">
+                            <i class="fa-solid fa-trash-can"></i> Excluir
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
         }
 
         function exportCSV() {
-            const currentMonthEntries = entries.filter(e => e.date.startsWith(currentMonthKey));
-            if (currentMonthEntries.length === 0) {
-                alert('Nenhum dado cadastrado para este mês.');
+            if (entries.length === 0) {
+                alert('Não há dados para exportar.');
                 return;
             }
 
-            let csv = "ID,Data,Turno,Estabelecimento,Valor\n";
-            currentMonthEntries.forEach(item => {
-                csv += `"${item.id}","${item.date}","${item.turno}","${item.estab}","${item.valor}"\n`;
+            let csvContent = 'data:text/csv;charset=utf-8,ID,Data,Tipo,Turno,Estabelecimento,Valor\n';
+            entries.forEach(e => {
+                csvContent += `"${e.id}","${e.date}","${e.type}","${e.turno}","${e.estab}","${e.valor}"\n`;
             });
 
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", `Ganhos_CBTA_${currentMonthKey}.csv`);
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `CBTA_Ganhos_${currentMonthKey}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        }
-
-        function formatCurrency(val) {
-            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0);
         }
     </script>
 </body>
