@@ -107,7 +107,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between pb-12">
+<body class="min-h-screen flex flex-col justify-between pb-16">
 
     <header class="bg-cbta-card border-b border-cbta-border sticky top-0 z-30 shadow-2xl">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex flex-wrap items-center justify-between gap-2">
@@ -276,17 +276,17 @@
                     </div>
                 </section>
 
-                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL (2026 CONSOLIDADO) -->
+                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL (CONSOLIDADO) -->
                 <section class="lg:col-span-7 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
                     <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                         <div class="flex items-center space-x-2">
                             <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                                 <i class="fa-solid fa-calendar-days text-xs"></i>
                             </div>
-                            <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Anual Consolidado 2026</h2>
+                            <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Anual Consolidado</h2>
                         </div>
                         <span class="text-[11px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
-                            Ano 2026
+                            Anual
                         </span>
                     </div>
 
@@ -307,7 +307,7 @@
                             </tbody>
                             <tfoot class="bg-cbta-panel font-black text-white border-t-2 border-emerald-500/50">
                                 <tr>
-                                    <td class="py-2.5 px-2.5">TOTAL 2026</td>
+                                    <td class="py-2.5 px-2.5">TOTAL GERAL</td>
                                     <td class="py-2.5 px-2.5 text-emerald-400" id="anual-total-araujo">R$ 0,00</td>
                                     <td class="py-2.5 px-2.5 text-yellow-400" id="anual-total-lojas">R$ 0,00</td>
                                     <td class="py-2.5 px-2.5 text-rose-400" id="anual-total-descontos">R$ 0,00</td>
@@ -327,13 +327,18 @@
             
             <!-- LEFT 7 COLUMNS: CALENDAR SPREADSHEET -->
             <section class="lg:col-span-7 bg-cbta-card p-3 rounded-xl border border-cbta-border shadow-lg space-y-3">
-                <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                <div class="flex items-center justify-between border-b border-cbta-border pb-2 flex-wrap gap-2">
                     <div class="flex items-center space-x-2">
                         <i class="fa-solid fa-calendar-days text-emerald-400 text-sm"></i>
                         <h2 class="text-xs font-black text-white uppercase tracking-wider" id="calendar-title-display">Julho de 2026</h2>
                     </div>
-                    <div class="text-[11px] text-slate-400 italic">
-                        * Clique em um dia para lançar ou ver detalhes
+                    <div class="flex items-center gap-2">
+                        <button onclick="deleteCurrentMonth()" title="Excluir Mês Atual" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 transition">
+                            <i class="fa-solid fa-trash-can"></i> Excluir Mês
+                        </button>
+                        <span class="text-[11px] text-slate-400 italic hidden sm:inline">
+                            * Clique em um dia para lançar
+                        </span>
                     </div>
                 </div>
 
@@ -616,12 +621,48 @@
 
     </main>
 
-    <!-- EXCEL MONTH TABS BOTTOM FOOTER -->
+    <!-- EXCEL MONTH TABS BOTTOM FOOTER COM BOTÃO DE ADICIONAR MÊS -->
     <footer class="fixed bottom-0 left-0 right-0 bg-cbta-card border-t border-cbta-border z-40">
-        <div class="max-w-7xl mx-auto px-2 flex items-center overflow-x-auto space-x-1 py-1" id="excel-tabs-container">
-            <!-- Dynamic Month Tabs -->
+        <div class="max-w-7xl mx-auto px-2 flex items-center justify-between overflow-x-auto py-1 gap-2">
+            <div class="flex items-center space-x-1 overflow-x-auto" id="excel-tabs-container">
+                <!-- Dynamic Month Tabs -->
+            </div>
+            <button onclick="openAddMonthModal()" class="shrink-0 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded text-xs font-black flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-plus text-xs"></i> Novo Mês
+            </button>
         </div>
     </footer>
+
+    <!-- MODAL DE ADICIONAR MÊS -->
+    <div id="add-month-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cbta-card border-2 border-emerald-500/50 rounded-xl max-w-sm w-full p-4 space-y-3 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                <h3 class="text-xs font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-plus text-emerald-400"></i>
+                    Adicionar Novo Mês
+                </h3>
+                <button onclick="closeAddMonthModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <form onsubmit="saveNewMonth(event)" class="space-y-3">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-300 mb-1">Selecione Mês e Ano</label>
+                    <input type="month" id="new-month-input" required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-2 text-xs text-yellow-400 font-bold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-300 mb-1">Rótulo na Aba (Ex: NOVEMBRO)</label>
+                    <input type="text" id="new-month-label" placeholder="Ex: NOVEMBRO" required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-2 text-xs text-white uppercase font-bold focus:outline-none">
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeAddMonthModal()" class="px-3 py-1.5 bg-cbta-panel text-xs text-slate-300 rounded font-bold">Cancelar</button>
+                    <button type="submit" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black rounded">Criar Mês</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- MODAL DE DESCONTOS DA COOPERATIVA -->
     <div id="discount-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -664,6 +705,7 @@
     <script>
         const STORAGE_ENTRIES = 'cbta_2026_ganhos_v4_entries';
         const STORAGE_DISCOUNTS = 'cbta_2026_ganhos_v4_discounts';
+        const STORAGE_MONTHS = 'cbta_2026_ganhos_v4_months';
 
         let currentMainTab = 'resumo';
         let currentMonthKey = '2026-07';
@@ -672,23 +714,15 @@
 
         let entries = [];
         let discounts = [];
+        let monthsData = {};
 
-        const monthNames = {
+        const defaultMonths = {
             '2026-05': 'MAIO',
             '2026-06': 'JUNHO',
             '2026-07': 'JULHO',
             '2026-08': 'AGOSTO',
             '2026-09': 'SETEMBRO',
             '2026-10': 'OUTUBRO'
-        };
-
-        const monthFullTitles = {
-            '2026-05': 'Maio de 2026',
-            '2026-06': 'Junho de 2026',
-            '2026-07': 'Julho de 2026',
-            '2026-08': 'Agosto de 2026',
-            '2026-09': 'Setembro de 2026',
-            '2026-10': 'Outubro de 2026'
         };
 
         const RATES = {
@@ -700,6 +734,19 @@
             pontoAddDin: 10.00,
             retornoDin: 9.00
         };
+
+        function getMonthFullName(mKey) {
+            const parts = mKey.split('-');
+            if (parts.length !== 2) return mKey;
+            const year = parts[0];
+            const monthNum = parts[1];
+            const names = {
+                '01': 'Janeiro', '02': 'Fevereiro', '03': 'Março', '04': 'Abril',
+                '05': 'Maio', '06': 'Junho', '07': 'Julho', '08': 'Agosto',
+                '09': 'Setembro', '10': 'Outubro', '11': 'Novembro', '12': 'Dezembro'
+            };
+            return `${names[monthNum] || monthNum} de ${year}`;
+        }
 
         function getInitialData() {
             return [
@@ -731,62 +778,13 @@
                     entregas: 10,
                     valorCorrida: 14.00,
                     valor: 140.00
-                },
-                {
-                    id: 'e4',
-                    date: '2026-07-04',
-                    type: 'araujo',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Araújo (4.0)',
-                    items: { bandeirada: 12, pontoAdd: 5, retornoNorm: 2, km: 15, retornoDin: 2 },
-                    valor: 180.75
-                },
-                {
-                    id: 'e5',
-                    date: '2026-07-08',
-                    type: 'lojas',
-                    turno: 'Integral',
-                    estab: 'Pizzaria Olegário',
-                    entregas: 12,
-                    valorCorrida: 15.00,
-                    valor: 180.00
-                },
-                {
-                    id: 'e6',
-                    date: '2026-07-10',
-                    type: 'lojas',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Auto Giro',
-                    entregas: 9,
-                    valorCorrida: 13.00,
-                    valor: 117.00
-                },
-                {
-                    id: 'e7',
-                    date: '2026-07-15',
-                    type: 'lojas',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Pizzaiolo Barroca',
-                    entregas: 11,
-                    valorCorrida: 12.00,
-                    valor: 132.00
-                },
-                {
-                    id: 'e8',
-                    date: '2026-07-22',
-                    type: 'araujo',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Araújo (4.0)',
-                    items: { bandeirada: 15, pontoAdd: 6, retornoDin: 3 },
-                    valor: 182.50
                 }
             ];
         }
 
         function getInitialDiscounts() {
             return [
-                { id: 'd1', month: '2026-07', desc: 'Taxa Cooperativa CBTA', valor: 400.00 },
-                { id: 'd2', month: '2026-07', desc: 'Desconto de Cota / Frota', valor: 310.00 }
+                { id: 'd1', month: '2026-07', desc: 'Taxa Cooperativa CBTA', valor: 400.00 }
             ];
         }
 
@@ -798,6 +796,22 @@
         });
 
         function loadStorage() {
+            // Months
+            const storedMonths = localStorage.getItem(STORAGE_MONTHS);
+            if (storedMonths) {
+                try { monthsData = JSON.parse(storedMonths); } catch(e) { monthsData = {...defaultMonths}; }
+            } else {
+                monthsData = {...defaultMonths};
+                saveMonths();
+            }
+
+            // Ensure currentMonthKey is valid
+            if (!monthsData[currentMonthKey]) {
+                const keys = Object.keys(monthsData);
+                if (keys.length > 0) currentMonthKey = keys[0];
+            }
+
+            // Entries
             const storedEntries = localStorage.getItem(STORAGE_ENTRIES);
             if (storedEntries) {
                 try { entries = JSON.parse(storedEntries); } catch(e) { entries = getInitialData(); }
@@ -806,6 +820,7 @@
                 saveEntries();
             }
 
+            // Discounts
             const storedDiscounts = localStorage.getItem(STORAGE_DISCOUNTS);
             if (storedDiscounts) {
                 try { discounts = JSON.parse(storedDiscounts); } catch(e) { discounts = getInitialDiscounts(); }
@@ -817,6 +832,7 @@
 
         function saveEntries() { localStorage.setItem(STORAGE_ENTRIES, JSON.stringify(entries)); }
         function saveDiscounts() { localStorage.setItem(STORAGE_DISCOUNTS, JSON.stringify(discounts)); }
+        function saveMonths() { localStorage.setItem(STORAGE_MONTHS, JSON.stringify(monthsData)); }
 
         function formatCurrency(val) {
             return (val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -852,11 +868,11 @@
             const container = document.getElementById('excel-tabs-container');
             container.innerHTML = '';
 
-            Object.keys(monthNames).forEach(mKey => {
+            Object.keys(monthsData).sort().forEach(mKey => {
                 const btn = document.createElement('button');
                 const isActive = (mKey === currentMonthKey);
-                btn.className = `px-5 py-1.5 text-xs font-extrabold rounded-t border-x border-cbta-border transition shrink-0 ${isActive ? 'excel-tab-active' : 'excel-tab-inactive'}`;
-                btn.innerText = monthNames[mKey];
+                btn.className = `px-4 py-1.5 text-xs font-extrabold rounded-t border-x border-cbta-border transition shrink-0 ${isActive ? 'excel-tab-active' : 'excel-tab-inactive'}`;
+                btn.innerText = monthsData[mKey];
                 btn.onclick = () => switchMonth(mKey);
                 container.appendChild(btn);
             });
@@ -864,8 +880,9 @@
 
         function switchMonth(mKey) {
             currentMonthKey = mKey;
-            document.getElementById('calendar-title-display').innerText = monthFullTitles[mKey];
-            document.getElementById('resumo-semanal-month-title').innerText = monthFullTitles[mKey];
+            const fullTitle = getMonthFullName(mKey);
+            document.getElementById('calendar-title-display').innerText = fullTitle;
+            document.getElementById('resumo-semanal-month-title').innerText = fullTitle;
             
             selectedDateStr = `${currentMonthKey}-01`;
             selectDate(selectedDateStr);
@@ -877,8 +894,11 @@
             selectedDateStr = dateStr;
             document.getElementById('form-date-input').value = dateStr;
             
-            const [y, m, d] = dateStr.split('-');
-            document.getElementById('selected-date-badge').innerText = `Data: ${d}/${m}/${y}`;
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                const [y, m, d] = parts;
+                document.getElementById('selected-date-badge').innerText = `Data: ${d}/${m}/${y}`;
+            }
 
             renderDayEntriesList();
             renderCalendarGrid();
@@ -887,11 +907,99 @@
         function onDateInputChange(newVal) {
             if (!newVal) return;
             const newMonth = newVal.substring(0, 7);
-            if (monthNames[newMonth] && newMonth !== currentMonthKey) {
+            if (monthsData[newMonth]) {
+                if (newMonth !== currentMonthKey) {
+                    currentMonthKey = newMonth;
+                    renderExcelTabs();
+                }
+            } else {
+                // Se o usuário selecionou uma data de um mês que ainda não está nas abas, cria automaticamente
+                const [year, monthNum] = newMonth.split('-');
+                const names = {
+                    '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                    '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                    '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+                };
+                const label = `${names[monthNum] || 'MÊS'} ${year}`;
+                monthsData[newMonth] = label;
+                saveMonths();
                 currentMonthKey = newMonth;
                 renderExcelTabs();
             }
             selectDate(newVal);
+            renderDashboard();
+        }
+
+        /* FUNÇÕES DE ADICIONAR E EXCLUIR MESES */
+        function openAddMonthModal() {
+            document.getElementById('add-month-modal').classList.remove('hidden');
+            // Sugere o próximo mês ou mês atual por padrão no input type="month"
+            const todayISO = new Date().toISOString().substring(0, 7);
+            document.getElementById('new-month-input').value = todayISO;
+            
+            // Atualiza o rótulo sugerido
+            updateSuggestedLabel(todayISO);
+            document.getElementById('new-month-input').onchange = (e) => updateSuggestedLabel(e.target.value);
+        }
+
+        function updateSuggestedLabel(yyyyMm) {
+            if (!yyyyMm) return;
+            const [y, m] = yyyyMm.split('-');
+            const names = {
+                '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+            };
+            document.getElementById('new-month-label').value = `${names[m] || ''} ${y}`;
+        }
+
+        function closeAddMonthModal() {
+            document.getElementById('add-month-modal').classList.add('hidden');
+        }
+
+        function saveNewMonth(e) {
+            e.preventDefault();
+            const mKey = document.getElementById('new-month-input').value;
+            const label = document.getElementById('new-month-label').value.trim().toUpperCase();
+
+            if (!mKey || !label) return;
+
+            monthsData[mKey] = label;
+            saveMonths();
+            closeAddMonthModal();
+
+            switchMonth(mKey);
+        }
+
+        function deleteCurrentMonth() {
+            const keys = Object.keys(monthsData);
+            if (keys.length <= 1) {
+                alert('Você não pode excluir o único mês restante.');
+                return;
+            }
+
+            const labelName = monthsData[currentMonthKey];
+            if (!confirm(`Tem certeza que deseja excluir o mês de ${labelName} (${currentMonthKey})? Todos os lançamentos e descontos deste mês serão permanentemente apagados.`)) {
+                return;
+            }
+
+            // Remove entries and discounts of this month
+            entries = entries.filter(e => !e.date.startsWith(currentMonthKey));
+            discounts = discounts.filter(d => d.month !== currentMonthKey);
+            saveEntries();
+            saveDiscounts();
+
+            // Remove from monthsData
+            delete monthsData[currentMonthKey];
+            saveMonths();
+
+            // Switch to first remaining month
+            const remainingKeys = Object.keys(monthsData).sort();
+            currentMonthKey = remainingKeys[0];
+            selectedDateStr = `${currentMonthKey}-01`;
+
+            renderExcelTabs();
+            selectDate(selectedDateStr);
             renderDashboard();
         }
 
@@ -1094,6 +1202,10 @@
             document.getElementById('metric-descontos-total').innerText = formatCurrency(totalDescontos);
             document.getElementById('metric-liquido-total').innerText = formatCurrency(totalLiquido);
 
+            const fullTitle = getMonthFullName(currentMonthKey);
+            document.getElementById('calendar-title-display').innerText = fullTitle;
+            document.getElementById('resumo-semanal-month-title').innerText = fullTitle;
+
             renderResumoSemanal(currentMonthEntries);
             renderResumoMensal(totalAraujo, totalLojas, totalDescontos, totalLiquido);
             renderResumoAnual();
@@ -1111,7 +1223,9 @@
             const container = document.getElementById('resumo-semanal-cards-container');
             container.innerHTML = '';
 
-            const [year, month] = currentMonthKey.split('-').map(Number);
+            const parts = currentMonthKey.split('-').map(Number);
+            const year = parts[0];
+            const month = parts[1];
             const daysInMonth = new Date(year, month, 0).getDate();
 
             const weeks = [
@@ -1194,7 +1308,7 @@
             let grandDescontos = 0;
             let grandLiquido = 0;
 
-            Object.keys(monthNames).forEach(mKey => {
+            Object.keys(monthsData).sort().forEach(mKey => {
                 const monthEntries = entries.filter(e => e.date.startsWith(mKey));
                 let mAraujo = 0;
                 let mLojas = 0;
@@ -1220,7 +1334,7 @@
                 tr.innerHTML = `
                     <td class="py-2 px-2.5 flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full ${isCurrent ? 'bg-yellow-400' : 'bg-slate-600'}"></span>
-                        ${monthNames[mKey]}
+                        ${monthsData[mKey]}
                     </td>
                     <td class="py-2 px-2.5 text-emerald-400">${formatCurrency(mAraujo)}</td>
                     <td class="py-2 px-2.5 text-yellow-400">${formatCurrency(mLojas)}</td>
@@ -1241,22 +1355,21 @@
             const grid = document.getElementById('calendar-days-grid');
             grid.innerHTML = '';
 
-            const [year, month] = currentMonthKey.split('-').map(Number);
+            const parts = currentMonthKey.split('-').map(Number);
+            const year = parts[0];
+            const month = parts[1];
             
             const firstDayIndex = new Date(year, month - 1, 1).getDay(); // 0 = Dom, 1 = Seg...
             const daysInMonth = new Date(year, month, 0).getDate();
 
-            // Convert Sunday=0 to Monday=0 index
             const offset = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
 
-            // Empty padding cells
             for (let i = 0; i < offset; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = 'bg-cbta-card/30 rounded border border-cbta-border/30 min-h-[70px]';
                 grid.appendChild(emptyCell);
             }
 
-            // Days cells
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayStr = day < 10 ? `0${day}` : `${day}`;
                 const fullDateStr = `${currentMonthKey}-${dayStr}`;
@@ -1267,7 +1380,6 @@
 
                 const dayCell = document.createElement('div');
                 
-                // If day is Folga -> Full Green Cell
                 if (hasFolga) {
                     dayCell.className = `min-h-[70px] p-1.5 rounded cursor-pointer transition flex flex-col justify-between bg-emerald-500 border-2 text-cbta-bg shadow-lg ${isSelected ? 'border-yellow-400 scale-[1.02]' : 'border-emerald-400 hover:brightness-110'}`;
                     
@@ -1452,8 +1564,8 @@
             }
 
             filtered.forEach(e => {
-                const [y, m, d] = e.date.split('-');
-                const formattedDate = `${d}/${m}/${y}`;
+                const parts = e.date.split('-');
+                const formattedDate = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : e.date;
 
                 let details = '';
                 if (e.type === 'araujo') details = 'Lançamento por Tabela Araújo 4.0';
