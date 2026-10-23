@@ -148,7 +148,7 @@
                     <i class="fa-solid fa-scissors"></i>
                     <span>Descontos</span>
                 </button>
-                <button onclick="exportJSONBackup()" title="Exportar Backup JSON" class="bg-cb2-panel bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold px-2.5 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1">
+                <button onclick="exportJSONBackup()" title="Exportar Backup JSON" class="bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold px-2.5 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1">
                     <i class="fa-solid fa-download text-emerald-400"></i>
                     <span class="hidden md:inline">Exportar</span>
                 </button>
@@ -165,58 +165,44 @@
 
         <!-- TOP SUMMARY METRICS (Always Visible) -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-            <!-- GANHO ARAÚJO 4.0 TOTAL -->
             <div class="bg-cbta-card p-3 rounded-xl border border-emerald-500/40 relative overflow-hidden shadow-md">
                 <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
                     <i class="fa-solid fa-truck-fast text-yellow-400"></i> Araújo (4.0) Mês
                 </div>
-                <div class="text-lg md:text-2xl font-black text-white" id="metric-araujo-total">
-                    R$ 0,00
-                </div>
+                <div class="text-lg md:text-2xl font-black text-white" id="metric-araujo-total">R$ 0,00</div>
                 <div class="text-[10px] text-slate-400 mt-0.5">Tabela Faturado Araújo</div>
             </div>
 
-            <!-- GANHO CONTRATOS LOJAS CBTA TOTAL -->
             <div class="bg-cbta-card p-3 rounded-xl border border-yellow-500/40 relative overflow-hidden shadow-md">
                 <div class="text-[10px] font-bold text-yellow-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
                     <i class="fa-solid fa-store text-emerald-400"></i> Lojas CBTA Mês
                 </div>
-                <div class="text-lg md:text-2xl font-black text-white" id="metric-lojas-total">
-                    R$ 0,00
-                </div>
+                <div class="text-lg md:text-2xl font-black text-white" id="metric-lojas-total">R$ 0,00</div>
                 <div class="text-[10px] text-slate-400 mt-0.5">Domino's, Pizzarone, etc.</div>
             </div>
 
-            <!-- DESCONTOS DA COOPERATIVA -->
             <div class="bg-cbta-card p-3 rounded-xl border border-rose-500/40 relative overflow-hidden shadow-md">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider mb-0.5 flex items-center gap-1">
                     <i class="fa-solid fa-scissors"></i> Descontos Cooperativa
                 </div>
-                <div class="text-lg md:text-2xl font-black text-rose-400" id="metric-descontos-total">
-                    R$ 0,00
-                </div>
+                <div class="text-lg md:text-2xl font-black text-rose-400" id="metric-descontos-total">R$ 0,00</div>
                 <div class="text-[10px] text-slate-400 mt-0.5 flex justify-between items-center">
                     <span>Taxas / Cotas</span>
                     <button onclick="openDiscountModal()" class="text-yellow-400 hover:underline font-bold text-[10px]">+ Editar</button>
                 </div>
             </div>
 
-            <!-- GANHO LÍQUIDO FINAL -->
             <div class="bg-gradient-to-br from-cbta-card via-cbta-panel to-emerald-950 p-3 rounded-xl border-2 border-emerald-400/60 relative overflow-hidden shadow-lg shadow-emerald-950/50">
                 <div class="text-[10px] font-bold text-yellow-300 uppercase tracking-wider mb-0.5 flex items-center gap-1">
                     <i class="fa-solid fa-wallet text-emerald-400"></i> Total Líquido Mês
                 </div>
-                <div class="text-xl md:text-2xl font-black text-emerald-400" id="metric-liquido-total">
-                    R$ 0,00
-                </div>
+                <div class="text-xl md:text-2xl font-black text-emerald-400" id="metric-liquido-total">R$ 0,00</div>
                 <div class="text-[10px] text-emerald-300/90 mt-0.5 font-bold">Valor Final a Receber</div>
             </div>
         </section>
 
-        <!-- TAB 1: RESUMO (SEMANAS, MÊS E ANOS) -->
+        <!-- TAB 1: RESUMO -->
         <div id="main-tab-resumo" class="space-y-4">
-            
-            <!-- SECTION 1: RESUMO SEMANAL -->
             <section class="bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
                 <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                     <div class="flex items-center space-x-2">
@@ -229,16 +215,10 @@
                     </div>
                     <span class="text-[11px] text-slate-400 italic">Detalhamento por semana do mês</span>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5" id="resumo-semanal-cards-container">
-                    <!-- Dynamic Weekly Cards -->
-                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5" id="resumo-semanal-cards-container"></div>
             </section>
 
-            <!-- SECTION 2 & 3: RESUMO MENSAL & RESUMO ANUAL -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
-                
-                <!-- LEFT 5 COLUMNS: RESUMO MENSAL CONSOLIDADO -->
                 <section class="lg:col-span-5 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
                     <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                         <div class="flex items-center space-x-2">
@@ -248,7 +228,6 @@
                             <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Mensal de Ganhos</h2>
                         </div>
                     </div>
-
                     <div class="space-y-2 text-xs">
                         <div class="bg-cbta-panel p-2.5 rounded-lg border border-cbta-border flex justify-between items-center">
                             <span class="text-slate-300 font-bold">Faturamento Bruto Mês:</span>
@@ -271,8 +250,6 @@
                             <span class="font-black text-emerald-400 text-base" id="resumo-mensal-liquido">R$ 0,00</span>
                         </div>
                     </div>
-
-                    <!-- Store Distribution Bar -->
                     <div class="pt-2 border-t border-cbta-border space-y-1.5">
                         <div class="flex justify-between text-[11px] font-bold">
                             <span class="text-slate-300">Distribuição Araújo vs Lojas</span>
@@ -285,7 +262,6 @@
                     </div>
                 </section>
 
-                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL -->
                 <section class="lg:col-span-7 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
                     <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                         <div class="flex items-center space-x-2">
@@ -294,12 +270,8 @@
                             </div>
                             <h2 class="text-xs font-black text-white uppercase tracking-wider">Resumo Anual Consolidado</h2>
                         </div>
-                        <span class="text-[11px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
-                            Anual
-                        </span>
+                        <span class="text-[11px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">Anual</span>
                     </div>
-
-                    <!-- Annual Table Comparison -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead>
@@ -311,9 +283,7 @@
                                     <th class="py-2 px-2.5 text-right">Líquido</th>
                                 </tr>
                             </thead>
-                            <tbody id="resumo-anual-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
-                                <!-- Dynamic Rows -->
-                            </tbody>
+                            <tbody id="resumo-anual-table-body" class="divide-y divide-cbta-border/50 text-slate-200"></tbody>
                             <tfoot class="bg-cbta-panel font-black text-white border-t-2 border-emerald-500/50">
                                 <tr>
                                     <td class="py-2.5 px-2.5">TOTAL GERAL</td>
@@ -326,15 +296,11 @@
                         </table>
                     </div>
                 </section>
-
             </div>
-
         </div>
 
-        <!-- TAB 2: PLANILHA DE GANHOS / CALENDÁRIO & EDIT PANEL -->
+        <!-- TAB 2: PLANILHA & LANÇAR -->
         <div id="main-tab-planilha" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-            
-            <!-- LEFT 7 COLUMNS: CALENDAR SPREADSHEET -->
             <section class="lg:col-span-7 bg-cbta-card p-3 rounded-xl border border-cbta-border shadow-lg space-y-3">
                 <div class="flex items-center justify-between border-b border-cbta-border pb-2 flex-wrap gap-2">
                     <div class="flex items-center space-x-2">
@@ -345,13 +311,10 @@
                         <button onclick="deleteCurrentMonth()" title="Excluir Mês Atual" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 transition">
                             <i class="fa-solid fa-trash-can"></i> Excluir Mês
                         </button>
-                        <span class="text-[11px] text-slate-400 italic hidden sm:inline">
-                            * Clique em um dia para lançar
-                        </span>
+                        <span class="text-[11px] text-slate-400 italic hidden sm:inline">* Clique em um dia para lançar</span>
                     </div>
                 </div>
 
-                <!-- Store Color Legend -->
                 <div class="flex flex-wrap gap-1.5 text-[10px] font-bold pb-1">
                     <span class="px-2 py-0.5 rounded badge-araujo">Araújo (4.0)</span>
                     <span class="px-2 py-0.5 rounded badge-dominos">Domino's</span>
@@ -363,10 +326,8 @@
                     <span class="px-2 py-0.5 rounded badge-folga">Folga (F)</span>
                 </div>
 
-                <!-- Calendar Sheet Grid -->
                 <div class="overflow-x-auto">
                     <div class="min-w-[480px]">
-                        <!-- Weekdays -->
                         <div class="grid grid-cols-7 gap-1 text-center font-black text-[11px] text-slate-300 mb-1">
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Seg</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border">Ter</div>
@@ -376,29 +337,20 @@
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border text-yellow-400">Sáb</div>
                             <div class="py-1.5 bg-cbta-panel rounded border border-cbta-border text-rose-400">Dom</div>
                         </div>
-
-                        <!-- Days Container -->
-                        <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 text-xs">
-                            <!-- Dynamic Days -->
-                        </div>
+                        <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 text-xs"></div>
                     </div>
                 </div>
             </section>
 
-            <!-- RIGHT 5 COLUMNS: ENTRY / EDIT PANEL -->
             <section class="lg:col-span-5 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3" id="entry-panel">
-                
                 <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                     <div class="flex items-center space-x-2">
                         <i class="fa-solid fa-pen-to-square text-yellow-400 text-sm"></i>
                         <h2 class="text-xs font-black text-white uppercase tracking-wider">Lançamento de Ganhos</h2>
                     </div>
-                    <span id="selected-date-badge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-black px-2 py-0.5 rounded-full">
-                        Data: 01/07/2026
-                    </span>
+                    <span id="selected-date-badge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-black px-2 py-0.5 rounded-full">Data: 01/07/2026</span>
                 </div>
 
-                <!-- Date & Shift Selection -->
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Data do Serviço</label>
@@ -416,7 +368,6 @@
                     </div>
                 </div>
 
-                <!-- ENTRY MODE SELECTOR TABS -->
                 <div class="grid grid-cols-3 gap-1 p-1 bg-cbta-bg rounded-lg border border-cbta-border">
                     <button id="btn-mode-araujo" onclick="switchEntryMode('araujo')" class="py-1.5 text-xs font-black rounded-md transition flex items-center justify-center space-x-1 bg-blue-600 text-white shadow">
                         <i class="fa-solid fa-calculator text-xs"></i>
@@ -439,14 +390,16 @@
                             <span class="text-xs font-black text-blue-400 uppercase flex items-center gap-1">
                                 <i class="fa-solid fa-table-list"></i> Tabela Araújo 4.0
                             </span>
-                            <span class="text-[10px] text-slate-400 font-bold">Qtd / KM Executado</span>
+                            <button type="button" onclick="openRatesModal()" class="text-[10px] text-yellow-400 hover:text-yellow-300 font-bold flex items-center gap-1 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
+                                <i class="fa-solid fa-gear"></i> Configurar Taxas
+                            </button>
                         </div>
 
                         <div class="space-y-1.5 text-xs">
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">BANDEIRADA</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 7,90</span>
+                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5" id="lbl-rate-bandeirada">R$ 7,90</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-bandeirada" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -454,7 +407,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">PONTO ADICIONAL</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 6,25</span>
+                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5" id="lbl-rate-ponto-add">R$ 6,25</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-ponto-add" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -462,7 +415,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">RETORNO NORMAL</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 5,60</span>
+                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5" id="lbl-rate-retorno-norm">R$ 5,60</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-retorno-norm" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -470,7 +423,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">KM RODADO</span>
-                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5">R$ 1,70 / km</span>
+                                    <span class="text-[10px] text-emerald-400 font-extrabold ml-1.5" id="lbl-rate-km">R$ 1,70 / km</span>
                                 </div>
                                 <input type="number" min="0" step="0.1" id="rate-km" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -478,7 +431,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">BANDEIRADA DINHEIRO</span>
-                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 12,30</span>
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5" id="lbl-rate-bandeirada-din">R$ 12,30</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-bandeirada-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -486,7 +439,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">PONTO ADICIONAL DINHEIRO</span>
-                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 10,00</span>
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5" id="lbl-rate-ponto-add-din">R$ 10,00</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-ponto-add-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -494,7 +447,7 @@
                             <div class="flex items-center justify-between bg-cbta-bg/60 p-1.5 rounded border border-cbta-border/50">
                                 <div>
                                     <span class="font-bold text-slate-200">RETORNO DINHEIRO</span>
-                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5">R$ 9,00</span>
+                                    <span class="text-[10px] text-yellow-400 font-extrabold ml-1.5" id="lbl-rate-retorno-din">R$ 9,00</span>
                                 </div>
                                 <input type="number" min="0" step="1" id="rate-retorno-din" oninput="calcAraujoTotal()" placeholder="0" class="w-16 bg-cbta-card border border-cbta-border rounded px-2 py-1 text-center font-black text-white focus:border-blue-500 focus:outline-none">
                             </div>
@@ -512,7 +465,7 @@
                     </button>
                 </form>
 
-                <!-- FORM LOJAS CONTRATOS CBTA -->
+                <!-- FORM LOJAS -->
                 <form id="form-lojas-container" onsubmit="saveLojaEntry(event)" class="hidden space-y-3">
                     <div class="bg-cbta-panel rounded-lg border border-yellow-500/40 p-3 space-y-3">
                         <div>
@@ -526,7 +479,6 @@
                                 <option value="Pizzaiolo Barroca">Pizzaiolo Barroca</option>
                             </select>
                         </div>
-
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Nº de Entregas</label>
@@ -537,36 +489,28 @@
                                 <input type="number" min="0" step="0.01" id="loja-valor-corrida" oninput="calcLojaTotal()" placeholder="Ex: 12.50" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
                             </div>
                         </div>
-
                         <div>
                             <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Ou Valor Total Fechado (R$)</label>
                             <input type="number" min="0" step="0.01" id="loja-valor-total" oninput="calcLojaTotalDirect()" placeholder="Ou digite o valor total final" class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-black text-yellow-400 focus:outline-none">
                         </div>
-
                         <div class="bg-amber-950/60 border border-yellow-500/40 rounded-lg p-2.5 flex items-center justify-between">
                             <span class="text-xs font-black text-yellow-200 uppercase">Faturamento Loja</span>
                             <span class="text-lg font-black text-emerald-400" id="live-loja-sum">R$ 0,00</span>
                         </div>
                     </div>
-
                     <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-black text-xs py-2 px-3 rounded-lg shadow-lg transition flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-floppy-disk"></i>
                         <span>SALVAR GANHO DA LOJA</span>
                     </button>
                 </form>
 
-                <!-- FORM / PAINEL DE FOLGA -->
+                <!-- FORM FOLGA -->
                 <div id="form-folga-container" class="hidden space-y-3">
                     <div class="bg-emerald-950/40 border border-emerald-500/50 rounded-lg p-4 text-center space-y-2">
-                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center mx-auto text-emerald-400 text-xl font-black">
-                            F
-                        </div>
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center mx-auto text-emerald-400 text-xl font-black">F</div>
                         <h3 class="text-xs font-black text-emerald-300 uppercase">Marcar Dia de Folga</h3>
-                        <p class="text-[11px] text-slate-300">
-                            Ao confirmar, o dia selecionado no calendário ficará verde com a letra <strong class="text-emerald-400">F</strong>.
-                        </p>
+                        <p class="text-[11px] text-slate-300">Ao confirmar, o dia selecionado no calendário ficará verde com a letra <strong class="text-emerald-400">F</strong>.</p>
                     </div>
-
                     <button type="button" onclick="saveFolgaEntry()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs py-2.5 px-3 rounded-lg shadow-lg transition flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-mug-hot"></i>
                         <span>LANCAR FOLGA NESTE DIA</span>
@@ -578,17 +522,12 @@
                         <span class="text-[11px] font-black text-slate-300 uppercase">Lançamentos do Dia Selecionado</span>
                         <span id="day-entries-count" class="text-[10px] text-yellow-400 font-bold">0 itens</span>
                     </div>
-
-                    <div id="day-entries-list" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
-                        <!-- Dynamic items -->
-                    </div>
+                    <div id="day-entries-list" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
                 </div>
-
             </section>
-
         </div>
 
-        <!-- TAB 3: HISTÓRICO COMPLETO -->
+        <!-- TAB 3: HISTÓRICO -->
         <div id="main-tab-historico" class="hidden bg-cbta-card p-4 rounded-xl border border-cbta-border shadow-xl space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cbta-border pb-3">
                 <div class="flex items-center space-x-2">
@@ -598,7 +537,6 @@
                         <p class="text-[11px] text-slate-400">Listagem de todos os lançamentos cadastrados</p>
                     </div>
                 </div>
-
                 <div class="flex items-center space-x-2">
                     <input type="text" id="history-search" oninput="renderHistoryTable()" placeholder="Buscar estabelecimento..." class="bg-cbta-bg border border-cbta-border rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none">
                     <button onclick="exportCSV()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg shadow transition flex items-center space-x-1">
@@ -607,8 +545,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Table of History -->
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs">
                     <thead>
@@ -621,9 +557,7 @@
                             <th class="py-2.5 px-3 text-right">Ação</th>
                         </tr>
                     </thead>
-                    <tbody id="history-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
-                        <!-- Dynamic -->
-                    </tbody>
+                    <tbody id="history-table-body" class="divide-y divide-cbta-border/50 text-slate-200"></tbody>
                 </table>
             </div>
         </div>
@@ -633,14 +567,71 @@
     <!-- EXCEL MONTH TABS BOTTOM FOOTER -->
     <footer class="fixed bottom-0 left-0 right-0 bg-cbta-card border-t border-cbta-border z-40">
         <div class="max-w-7xl mx-auto px-2 flex items-center justify-between overflow-x-auto py-1 gap-2">
-            <div class="flex items-center space-x-1 overflow-x-auto" id="excel-tabs-container">
-                <!-- Dynamic Month Tabs -->
-            </div>
+            <div class="flex items-center space-x-1 overflow-x-auto" id="excel-tabs-container"></div>
             <button onclick="openAddMonthModal()" class="shrink-0 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded text-xs font-black flex items-center gap-1.5 transition">
                 <i class="fa-solid fa-plus text-xs"></i> Novo Mês
             </button>
         </div>
     </footer>
+
+    <!-- MODAL DE CONFIGURAÇÃO DE TAXAS DA ARAÚJO -->
+    <div id="rates-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cbta-card border-2 border-blue-500/50 rounded-xl max-w-md w-full p-4 space-y-3 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-cbta-border pb-2">
+                <h3 class="text-xs font-black text-white flex items-center gap-2">
+                    <i class="fa-solid fa-gear text-blue-400"></i>
+                    Configurar Taxas da Araújo 4.0
+                </h3>
+                <button onclick="closeRatesModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <form onsubmit="saveRatesConfig(event)" class="space-y-2 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-300 mb-1">Bandeirada (R$)</label>
+                        <input type="number" step="0.01" min="0" id="cfg-bandeirada" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2.5 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-300 mb-1">Ponto Adicional (R$)</label>
+                        <input type="number" step="0.01" min="0" id="cfg-ponto-add" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2.5 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-300 mb-1">Retorno Normal (R$)</label>
+                        <input type="number" step="0.01" min="0" id="cfg-retorno-norm" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2.5 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-300 mb-1">KM Rodado (R$)</label>
+                        <input type="number" step="0.01" min="0" id="cfg-km" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2.5 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1.5">
+                    <div>
+                        <label class="block text-[9px] font-bold text-slate-300 mb-1">Band. Dinheiro</label>
+                        <input type="number" step="0.01" min="0" id="cfg-bandeirada-din" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-bold text-slate-300 mb-1">Pto. Dinheiro</label>
+                        <input type="number" step="0.01" min="0" id="cfg-ponto-add-din" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-bold text-slate-300 mb-1">Ret. Dinheiro</label>
+                        <input type="number" step="0.01" min="0" id="cfg-retorno-din" required class="w-full bg-cbta-bg border border-cbta-border rounded px-2 py-1.5 text-white font-bold focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeRatesModal()" class="px-3 py-1.5 bg-cbta-panel text-xs text-slate-300 rounded font-bold">Cancelar</button>
+                    <button type="submit" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded">Salvar Taxas</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- MODAL DE ADICIONAR MÊS -->
     <div id="add-month-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -654,7 +645,6 @@
                     <i class="fa-solid fa-xmark text-base"></i>
                 </button>
             </div>
-
             <form onsubmit="saveNewMonth(event)" class="space-y-3">
                 <div>
                     <label class="block text-[10px] font-bold text-slate-300 mb-1">Selecione Mês e Ano</label>
@@ -664,7 +654,6 @@
                     <label class="block text-[10px] font-bold text-slate-300 mb-1">Rótulo na Aba (Ex: NOVEMBRO)</label>
                     <input type="text" id="new-month-label" placeholder="Ex: NOVEMBRO" required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-2 text-xs text-white uppercase font-bold focus:outline-none">
                 </div>
-
                 <div class="flex justify-end space-x-2 pt-2">
                     <button type="button" onclick="closeAddMonthModal()" class="px-3 py-1.5 bg-cbta-panel text-xs text-slate-300 rounded font-bold">Cancelar</button>
                     <button type="submit" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black rounded">Criar Mês</button>
@@ -673,7 +662,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE DESCONTOS DA COOPERATIVA -->
+    <!-- MODAL DE DESCONTOS -->
     <div id="discount-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-cbta-card border-2 border-yellow-500/50 rounded-xl max-w-md w-full p-4 space-y-3 shadow-2xl">
             <div class="flex items-center justify-between border-b border-cbta-border pb-2">
@@ -685,7 +674,6 @@
                     <i class="fa-solid fa-xmark text-base"></i>
                 </button>
             </div>
-
             <form onsubmit="saveDiscount(event)" class="space-y-2">
                 <div>
                     <label class="block text-[10px] font-bold text-slate-300 mb-1">Data do Desconto</label>
@@ -699,18 +687,14 @@
                     <label class="block text-[10px] font-bold text-slate-300 mb-1">Valor do Desconto (R$)</label>
                     <input type="number" step="0.01" min="0" id="disc-val" placeholder="0,00" required class="w-full bg-cbta-bg border border-cbta-border rounded-lg px-2.5 py-1.5 text-xs font-black text-rose-400 focus:outline-none">
                 </div>
-
                 <div class="flex justify-end space-x-2 pt-2">
                     <button type="button" onclick="closeDiscountModal()" class="px-3 py-1.5 bg-cbta-panel text-xs text-slate-300 rounded font-bold">Cancelar</button>
                     <button type="submit" class="px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-950 text-xs font-black rounded">Adicionar</button>
                 </div>
             </form>
-
             <div class="border-t border-cbta-border pt-2">
                 <span class="text-[10px] font-bold text-slate-400 uppercase">Descontos deste Mês</span>
-                <div id="discounts-list-container" class="space-y-1 mt-1 max-h-36 overflow-y-auto">
-                    <!-- Dynamic -->
-                </div>
+                <div id="discounts-list-container" class="space-y-1 mt-1 max-h-36 overflow-y-auto"></div>
             </div>
         </div>
     </div>
@@ -719,6 +703,7 @@
         const STORAGE_ENTRIES = 'cbta_2026_ganhos_v4_entries';
         const STORAGE_DISCOUNTS = 'cbta_2026_ganhos_v4_discounts';
         const STORAGE_MONTHS = 'cbta_2026_ganhos_v4_months';
+        const STORAGE_RATES = 'cbta_2026_araujo_rates';
 
         let currentMainTab = 'resumo';
         let currentMonthKey = '2026-07';
@@ -729,16 +714,7 @@
         let discounts = [];
         let monthsData = {};
 
-        const defaultMonths = {
-            '2026-05': 'MAIO',
-            '2026-06': 'JUNHO',
-            '2026-07': 'JULHO',
-            '2026-08': 'AGOSTO',
-            '2026-09': 'SETEMBRO',
-            '2026-10': 'OUTUBRO'
-        };
-
-        const RATES = {
+        let currentRates = {
             bandeirada: 7.90,
             pontoAdd: 6.25,
             retornoNorm: 5.60,
@@ -746,6 +722,15 @@
             bandeiradaDin: 12.30,
             pontoAddDin: 10.00,
             retornoDin: 9.00
+        };
+
+        const defaultMonths = {
+            '2026-05': 'MAIO',
+            '2026-06': 'JUNHO',
+            '2026-07': 'JULHO',
+            '2026-08': 'AGOSTO',
+            '2026-09': 'SETEMBRO',
+            '2026-10': 'OUTUBRO'
         };
 
         function getMonthFullName(mKey) {
@@ -771,16 +756,6 @@
                     estab: 'Araújo (4.0)',
                     items: { bandeirada: 10, pontoAdd: 4, km: 12 },
                     valor: 124.40
-                },
-                {
-                    id: 'e2',
-                    date: '2026-07-01',
-                    type: 'lojas',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Domino\'s',
-                    entregas: 8,
-                    valorCorrida: 12.50,
-                    valor: 100.00
                 }
             ];
         }
@@ -795,10 +770,18 @@
             loadStorage();
             renderExcelTabs();
             selectDate(selectedDateStr);
+            updateRatesDisplay();
             renderDashboard();
         });
 
         function loadStorage() {
+            // Rates
+            const storedRates = localStorage.getItem(STORAGE_RATES);
+            if (storedRates) {
+                try { currentRates = JSON.parse(storedRates); } catch(e) {}
+            }
+
+            // Months
             const storedMonths = localStorage.getItem(STORAGE_MONTHS);
             if (storedMonths) {
                 try { monthsData = JSON.parse(storedMonths); } catch(e) { monthsData = {...defaultMonths}; }
@@ -812,6 +795,7 @@
                 if (keys.length > 0) currentMonthKey = keys[0];
             }
 
+            // Entries
             const storedEntries = localStorage.getItem(STORAGE_ENTRIES);
             if (storedEntries) {
                 try { entries = JSON.parse(storedEntries); } catch(e) { entries = getInitialData(); }
@@ -820,6 +804,7 @@
                 saveEntries();
             }
 
+            // Discounts
             const storedDiscounts = localStorage.getItem(STORAGE_DISCOUNTS);
             if (storedDiscounts) {
                 try { discounts = JSON.parse(storedDiscounts); } catch(e) { discounts = getInitialDiscounts(); }
@@ -832,6 +817,49 @@
         function saveEntries() { localStorage.setItem(STORAGE_ENTRIES, JSON.stringify(entries)); }
         function saveDiscounts() { localStorage.setItem(STORAGE_DISCOUNTS, JSON.stringify(discounts)); }
         function saveMonths() { localStorage.setItem(STORAGE_MONTHS, JSON.stringify(monthsData)); }
+        function saveRates() { localStorage.setItem(STORAGE_RATES, JSON.stringify(currentRates)); }
+
+        function updateRatesDisplay() {
+            document.getElementById('lbl-rate-bandeirada').innerText = `R$ ${currentRates.bandeirada.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lbl-rate-ponto-add').innerText = `R$ ${currentRates.pontoAdd.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lbl-rate-retorno-norm').innerText = `R$ ${currentRates.retornoNorm.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lbl-rate-km').innerText = `R$ ${currentRates.km.toFixed(2).replace('.', ',')} / km`;
+            document.getElementById('lbl-rate-bandeirada-din').innerText = `R$ ${currentRates.bandeiradaDin.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lbl-rate-ponto-add-din').innerText = `R$ ${currentRates.pontoAddDin.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lbl-rate-retorno-din').innerText = `R$ ${currentRates.retornoDin.toFixed(2).replace('.', ',')}`;
+        }
+
+        function openRatesModal() {
+            document.getElementById('rates-modal').classList.remove('hidden');
+            document.getElementById('cfg-bandeirada').value = currentRates.bandeirada;
+            document.getElementById('cfg-ponto-add').value = currentRates.pontoAdd;
+            document.getElementById('cfg-retorno-norm').value = currentRates.retornoNorm;
+            document.getElementById('cfg-km').value = currentRates.km;
+            document.getElementById('cfg-bandeirada-din').value = currentRates.bandeiradaDin;
+            document.getElementById('cfg-ponto-add-din').value = currentRates.pontoAddDin;
+            document.getElementById('cfg-retorno-din').value = currentRates.retornoDin;
+        }
+
+        function closeRatesModal() {
+            document.getElementById('rates-modal').classList.add('hidden');
+        }
+
+        function saveRatesConfig(e) {
+            e.preventDefault();
+            currentRates = {
+                bandeirada: safeVal('cfg-bandeirada'),
+                pontoAdd: safeVal('cfg-ponto-add'),
+                retornoNorm: safeVal('cfg-retorno-norm'),
+                km: safeVal('cfg-km'),
+                bandeiradaDin: safeVal('cfg-bandeirada-din'),
+                pontoAddDin: safeVal('cfg-ponto-add-din'),
+                retornoDin: safeVal('cfg-retorno-din')
+            };
+            saveRates();
+            updateRatesDisplay();
+            calcAraujoTotal();
+            closeRatesModal();
+        }
 
         function formatCurrency(val) {
             return (val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -922,7 +950,6 @@
             renderDashboard();
         }
 
-        /* GERENCIAR MESES */
         function openAddMonthModal() {
             document.getElementById('add-month-modal').classList.remove('hidden');
             const todayISO = new Date().toISOString().substring(0, 7);
@@ -986,12 +1013,12 @@
             switchMonth(remainingKeys[0]);
         }
 
-        /* EXPORTAR E IMPORTAR BACKUP JSON */
         function exportJSONBackup() {
             const backupData = {
                 months: monthsData,
                 entries: entries,
                 discounts: discounts,
+                rates: currentRates,
                 exportDate: new Date().toISOString()
             };
 
@@ -1017,6 +1044,11 @@
                             monthsData = imported.months;
                             entries = imported.entries;
                             discounts = imported.discounts || [];
+                            if (imported.rates) {
+                                currentRates = imported.rates;
+                                saveRates();
+                                updateRatesDisplay();
+                            }
                             
                             saveMonths();
                             saveEntries();
@@ -1072,13 +1104,13 @@
         }
 
         function calcAraujoTotal() {
-            const b = safeVal('rate-bandeirada') * RATES.bandeirada;
-            const pa = safeVal('rate-ponto-add') * RATES.pontoAdd;
-            const rn = safeVal('rate-retorno-norm') * RATES.retornoNorm;
-            const km = safeVal('rate-km') * RATES.km;
-            const bd = safeVal('rate-bandeirada-din') * RATES.bandeiradaDin;
-            const pad = safeVal('rate-ponto-add-din') * RATES.pontoAddDin;
-            const rd = safeVal('rate-retorno-din') * RATES.retornoDin;
+            const b = safeVal('rate-bandeirada') * currentRates.bandeirada;
+            const pa = safeVal('rate-ponto-add') * currentRates.pontoAdd;
+            const rn = safeVal('rate-retorno-norm') * currentRates.retornoNorm;
+            const km = safeVal('rate-km') * currentRates.km;
+            const bd = safeVal('rate-bandeirada-din') * currentRates.bandeiradaDin;
+            const pad = safeVal('rate-ponto-add-din') * currentRates.pontoAddDin;
+            const rd = safeVal('rate-retorno-din') * currentRates.retornoDin;
 
             const total = b + pa + rn + km + bd + pad + rd;
             document.getElementById('live-araujo-sum').innerText = formatCurrency(total);
@@ -1468,9 +1500,7 @@
                         <div class="flex-1 flex items-center justify-center my-1">
                             <span class="text-3xl font-black text-cbta-bg leading-none tracking-tighter">F</span>
                         </div>
-                        <div class="text-[9px] font-black text-center text-cbta-bg/80 uppercase">
-                            Descanso
-                        </div>
+                        <div class="text-[9px] font-black text-center text-cbta-bg/80 uppercase">Descanso</div>
                     `;
                 } else {
                     let totalGanhosDia = 0;
@@ -1497,9 +1527,7 @@
                             <span class="font-bold text-xs ${isSelected ? 'text-yellow-400' : 'text-slate-200'}">${day}</span>
                             ${totalGanhosDia > 0 ? `<span class="text-[9px] font-black text-emerald-400">R$${totalGanhosDia.toFixed(0)}</span>` : ''}
                         </div>
-                        <div class="space-y-0.5 my-1 overflow-hidden max-h-[36px]">
-                            ${badgesHtml}
-                        </div>
+                        <div class="space-y-0.5 my-1 overflow-hidden max-h-[36px]">${badgesHtml}</div>
                         <div></div>
                     `;
                 }
@@ -1553,7 +1581,6 @@
             });
         }
 
-        /* MODAL DISCOUNT FUNCTIONS */
         function openDiscountModal() {
             document.getElementById('discount-modal').classList.remove('hidden');
             document.getElementById('disc-date').value = selectedDateStr || `${currentMonthKey}-01`;
@@ -1628,7 +1655,6 @@
             currentDiscounts.forEach(d => {
                 const row = document.createElement('div');
                 row.className = 'bg-cbta-bg p-1.5 rounded border border-cbta-border flex justify-between items-center text-xs';
-                
                 const formattedDate = d.date ? d.date.split('-').reverse().join('/') : '';
 
                 row.innerHTML = `
@@ -1647,14 +1673,12 @@
             });
         }
 
-        /* HISTÓRICO TAB */
         function renderHistoryTable() {
             const tbody = document.getElementById('history-table-body');
             if (!tbody) return;
             tbody.innerHTML = '';
 
             const query = (document.getElementById('history-search')?.value || '').toLowerCase();
-
             const filtered = entries.filter(e => {
                 return e.estab.toLowerCase().includes(query) || e.date.includes(query);
             }).sort((a, b) => b.date.localeCompare(a.date));
