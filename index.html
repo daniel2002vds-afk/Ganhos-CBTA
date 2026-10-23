@@ -142,12 +142,21 @@
                 </button>
             </div>
 
-            <!-- Discount Manager Action -->
+            <!-- Action Buttons: Discounts, Export & Import -->
             <div class="flex items-center space-x-2">
                 <button onclick="openDiscountModal()" class="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-slate-950 text-xs font-black px-3 py-1.5 rounded-lg shadow flex items-center space-x-1.5 transition">
                     <i class="fa-solid fa-scissors"></i>
                     <span>Descontos</span>
                 </button>
+                <button onclick="exportJSONBackup()" title="Exportar Backup JSON" class="bg-cb2-panel bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold px-2.5 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1">
+                    <i class="fa-solid fa-download text-emerald-400"></i>
+                    <span class="hidden md:inline">Exportar</span>
+                </button>
+                <label title="Importar Backup JSON" class="bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold px-2.5 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1 cursor-pointer">
+                    <i class="fa-solid fa-upload text-yellow-400"></i>
+                    <span class="hidden md:inline">Importar</span>
+                    <input type="file" id="importFile" accept=".json" onchange="importJSONBackup(event)" class="hidden">
+                </label>
             </div>
         </div>
     </header>
@@ -204,7 +213,7 @@
             </div>
         </section>
 
-        <!-- TAB 1: RESUMO (SEMANAS, MÊS E ANOS) [DEFAULT TABS] -->
+        <!-- TAB 1: RESUMO (SEMANAS, MÊS E ANOS) -->
         <div id="main-tab-resumo" class="space-y-4">
             
             <!-- SECTION 1: RESUMO SEMANAL -->
@@ -222,11 +231,11 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5" id="resumo-semanal-cards-container">
-                    <!-- Dynamic Weekly Cards (Semana 1 to Semana 5) -->
+                    <!-- Dynamic Weekly Cards -->
                 </div>
             </section>
 
-            <!-- SECTION 2 & 3: RESUMO MENSAL & RESUMO ANUAL (2 COLUMNS) -->
+            <!-- SECTION 2 & 3: RESUMO MENSAL & RESUMO ANUAL -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
                 
                 <!-- LEFT 5 COLUMNS: RESUMO MENSAL CONSOLIDADO -->
@@ -276,7 +285,7 @@
                     </div>
                 </section>
 
-                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL (CONSOLIDADO) -->
+                <!-- RIGHT 7 COLUMNS: RESUMO ANUAL -->
                 <section class="lg:col-span-7 bg-cbta-card p-3.5 rounded-xl border border-cbta-border shadow-xl space-y-3">
                     <div class="flex items-center justify-between border-b border-cbta-border pb-2">
                         <div class="flex items-center space-x-2">
@@ -303,7 +312,7 @@
                                 </tr>
                             </thead>
                             <tbody id="resumo-anual-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
-                                <!-- Dynamic Annual Months Rows -->
+                                <!-- Dynamic Rows -->
                             </tbody>
                             <tfoot class="bg-cbta-panel font-black text-white border-t-2 border-emerald-500/50">
                                 <tr>
@@ -571,7 +580,7 @@
                     </div>
 
                     <div id="day-entries-list" class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
-                        <!-- Populated dynamically -->
+                        <!-- Dynamic items -->
                     </div>
                 </div>
 
@@ -579,13 +588,13 @@
 
         </div>
 
-        <!-- TAB 3: HISTÓRICO COMPLETO (OCULTO POR PADRÃO) -->
+        <!-- TAB 3: HISTÓRICO COMPLETO -->
         <div id="main-tab-historico" class="hidden bg-cbta-card p-4 rounded-xl border border-cbta-border shadow-xl space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cbta-border pb-3">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-clock-rotate-left text-yellow-400 text-base"></i>
                     <div>
-                        <h2 class="text-sm font-black text-white uppercase tracking-wider">Histórico de Registros (Aba Oculta)</h2>
+                        <h2 class="text-sm font-black text-white uppercase tracking-wider">Histórico de Registros</h2>
                         <p class="text-[11px] text-slate-400">Listagem de todos os lançamentos cadastrados</p>
                     </div>
                 </div>
@@ -613,7 +622,7 @@
                         </tr>
                     </thead>
                     <tbody id="history-table-body" class="divide-y divide-cbta-border/50 text-slate-200">
-                        <!-- Populated dynamically -->
+                        <!-- Dynamic -->
                     </tbody>
                 </table>
             </div>
@@ -621,7 +630,7 @@
 
     </main>
 
-    <!-- EXCEL MONTH TABS BOTTOM FOOTER COM BOTÃO DE ADICIONAR MÊS -->
+    <!-- EXCEL MONTH TABS BOTTOM FOOTER -->
     <footer class="fixed bottom-0 left-0 right-0 bg-cbta-card border-t border-cbta-border z-40">
         <div class="max-w-7xl mx-auto px-2 flex items-center justify-between overflow-x-auto py-1 gap-2">
             <div class="flex items-center space-x-1 overflow-x-auto" id="excel-tabs-container">
@@ -714,7 +723,7 @@
         let currentMainTab = 'resumo';
         let currentMonthKey = '2026-07';
         let selectedDateStr = '2026-07-01';
-        let currentMode = 'araujo'; // 'araujo', 'lojas', 'folga'
+        let currentMode = 'araujo';
 
         let entries = [];
         let discounts = [];
@@ -772,16 +781,6 @@
                     entregas: 8,
                     valorCorrida: 12.50,
                     valor: 100.00
-                },
-                {
-                    id: 'e3',
-                    date: '2026-07-03',
-                    type: 'lojas',
-                    turno: '3º Turno (Noite)',
-                    estab: 'Pizzarone',
-                    entregas: 10,
-                    valorCorrida: 14.00,
-                    valor: 140.00
                 }
             ];
         }
@@ -800,7 +799,6 @@
         });
 
         function loadStorage() {
-            // Months
             const storedMonths = localStorage.getItem(STORAGE_MONTHS);
             if (storedMonths) {
                 try { monthsData = JSON.parse(storedMonths); } catch(e) { monthsData = {...defaultMonths}; }
@@ -814,7 +812,6 @@
                 if (keys.length > 0) currentMonthKey = keys[0];
             }
 
-            // Entries
             const storedEntries = localStorage.getItem(STORAGE_ENTRIES);
             if (storedEntries) {
                 try { entries = JSON.parse(storedEntries); } catch(e) { entries = getInitialData(); }
@@ -823,7 +820,6 @@
                 saveEntries();
             }
 
-            // Discounts
             const storedDiscounts = localStorage.getItem(STORAGE_DISCOUNTS);
             if (storedDiscounts) {
                 try { discounts = JSON.parse(storedDiscounts); } catch(e) { discounts = getInitialDiscounts(); }
@@ -910,29 +906,23 @@
         function onDateInputChange(newVal) {
             if (!newVal) return;
             const newMonth = newVal.substring(0, 7);
-            if (monthsData[newMonth]) {
-                if (newMonth !== currentMonthKey) {
-                    currentMonthKey = newMonth;
-                    renderExcelTabs();
-                }
-            } else {
+            if (!monthsData[newMonth]) {
                 const [year, monthNum] = newMonth.split('-');
                 const names = {
                     '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
                     '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
                     '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
                 };
-                const label = `${names[monthNum] || 'MÊS'} ${year}`;
-                monthsData[newMonth] = label;
+                monthsData[newMonth] = `${names[monthNum] || 'MÊS'} ${year}`;
                 saveMonths();
-                currentMonthKey = newMonth;
-                renderExcelTabs();
             }
+            currentMonthKey = newMonth;
+            renderExcelTabs();
             selectDate(newVal);
             renderDashboard();
         }
 
-        /* FUNÇÕES DE ADICIONAR E EXCLUIR MESES */
+        /* GERENCIAR MESES */
         function openAddMonthModal() {
             document.getElementById('add-month-modal').classList.remove('hidden');
             const todayISO = new Date().toISOString().substring(0, 7);
@@ -966,7 +956,6 @@
             monthsData[mKey] = label;
             saveMonths();
             closeAddMonthModal();
-
             switchMonth(mKey);
         }
 
@@ -978,7 +967,7 @@
             }
 
             const labelName = monthsData[currentMonthKey];
-            if (!confirm(`Tem certeza que deseja excluir o mês de ${labelName} (${currentMonthKey})? Todos os lançamentos e descontos deste mês serão permanentemente apagados.`)) {
+            if (!confirm(`Tem certeza que deseja excluir o mês de ${labelName} (${currentMonthKey})? Todos os lançamentos e descontos deste mês serão apagados.`)) {
                 return;
             }
 
@@ -994,12 +983,60 @@
             saveMonths();
 
             const remainingKeys = Object.keys(monthsData).sort();
-            currentMonthKey = remainingKeys[0];
-            selectedDateStr = `${currentMonthKey}-01`;
+            switchMonth(remainingKeys[0]);
+        }
 
-            renderExcelTabs();
-            selectDate(selectedDateStr);
-            renderDashboard();
+        /* EXPORTAR E IMPORTAR BACKUP JSON */
+        function exportJSONBackup() {
+            const backupData = {
+                months: monthsData,
+                entries: entries,
+                discounts: discounts,
+                exportDate: new Date().toISOString()
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Backup_CBTA_Ganhos_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function importJSONBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && imported.entries && imported.months) {
+                        if (confirm('Deseja substituir todos os dados atuais pelo backup importado?')) {
+                            monthsData = imported.months;
+                            entries = imported.entries;
+                            discounts = imported.discounts || [];
+                            
+                            saveMonths();
+                            saveEntries();
+                            saveDiscounts();
+
+                            const keys = Object.keys(monthsData).sort();
+                            if (keys.length > 0) {
+                                switchMonth(keys[0]);
+                            }
+                            alert('Backup importado com sucesso!');
+                        }
+                    } else {
+                        alert('Arquivo de backup inválido.');
+                    }
+                } catch (err) {
+                    alert('Erro ao processar o arquivo JSON.');
+                }
+                event.target.value = '';
+            };
+            reader.readAsText(file);
         }
 
         function switchEntryMode(mode) {
@@ -1069,11 +1106,23 @@
             e.preventDefault();
             const valorTotal = calcAraujoTotal();
             if (valorTotal <= 0) {
-                alert('Insira ao menos um item de entrega faturado da Araújo.');
+                alert('Insira ao menos um item faturado.');
                 return;
             }
 
             const turno = document.getElementById('form-turno-input').value;
+            const entryMonth = selectedDateStr.substring(0, 7);
+
+            if (!monthsData[entryMonth]) {
+                const [y, m] = entryMonth.split('-');
+                const names = {
+                    '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                    '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                    '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+                };
+                monthsData[entryMonth] = `${names[m] || 'MÊS'} ${y}`;
+                saveMonths();
+            }
 
             const newEntry = {
                 id: 'e_' + Date.now(),
@@ -1096,7 +1145,7 @@
             entries.push(newEntry);
             saveEntries();
             resetAraujoForm();
-            renderDashboard();
+            switchMonth(entryMonth);
         }
 
         function resetAraujoForm() {
@@ -1119,11 +1168,23 @@
             }
 
             if (valorTotal <= 0) {
-                alert('Insira a quantidade e o valor para salvar o lançamento da loja.');
+                alert('Insira a quantidade e o valor.');
                 return;
             }
 
             const turno = document.getElementById('form-turno-input').value;
+            const entryMonth = selectedDateStr.substring(0, 7);
+
+            if (!monthsData[entryMonth]) {
+                const [y, m] = entryMonth.split('-');
+                const names = {
+                    '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                    '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                    '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+                };
+                monthsData[entryMonth] = `${names[m] || 'MÊS'} ${y}`;
+                saveMonths();
+            }
 
             const newEntry = {
                 id: 'e_' + Date.now(),
@@ -1139,7 +1200,7 @@
             entries.push(newEntry);
             saveEntries();
             resetLojaForm();
-            renderDashboard();
+            switchMonth(entryMonth);
         }
 
         function resetLojaForm() {
@@ -1151,11 +1212,23 @@
 
         function saveFolgaEntry() {
             const turno = document.getElementById('form-turno-input').value;
+            const entryMonth = selectedDateStr.substring(0, 7);
             
             const existingFolga = entries.find(e => e.date === selectedDateStr && e.type === 'folga');
             if (existingFolga) {
-                alert('Sua folga já está registrada neste dia!');
+                alert('Folga já registrada neste dia!');
                 return;
+            }
+
+            if (!monthsData[entryMonth]) {
+                const [y, m] = entryMonth.split('-');
+                const names = {
+                    '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                    '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                    '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+                };
+                monthsData[entryMonth] = `${names[m] || 'MÊS'} ${y}`;
+                saveMonths();
             }
 
             const newEntry = {
@@ -1169,7 +1242,7 @@
 
             entries.push(newEntry);
             saveEntries();
-            renderDashboard();
+            switchMonth(entryMonth);
         }
 
         function deleteEntry(id) {
@@ -1355,7 +1428,6 @@
             document.getElementById('anual-total-liquido').innerText = formatCurrency(grandLiquido);
         }
 
-        /* CALENDAR GRID RENDERER */
         function renderCalendarGrid() {
             const grid = document.getElementById('calendar-days-grid');
             grid.innerHTML = '';
@@ -1437,7 +1509,6 @@
             }
         }
 
-        /* Render Day Entries List */
         function renderDayEntriesList() {
             const listContainer = document.getElementById('day-entries-list');
             const countBadge = document.getElementById('day-entries-count');
@@ -1472,7 +1543,7 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 shrink-0">
-                        <span class="font-black ${e.type === 'folga' ? 'text-emerald-400' : 'text-emerald-400'}">${formatCurrency(e.valor)}</span>
+                        <span class="font-black text-emerald-400">${formatCurrency(e.valor)}</span>
                         <button onclick="deleteEntry('${e.id}')" class="text-rose-400 hover:text-rose-300 p-1">
                             <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
@@ -1485,7 +1556,6 @@
         /* MODAL DISCOUNT FUNCTIONS */
         function openDiscountModal() {
             document.getElementById('discount-modal').classList.remove('hidden');
-            // Define o campo de data do desconto com a data atualmente selecionada ou o primeiro dia do mês
             document.getElementById('disc-date').value = selectedDateStr || `${currentMonthKey}-01`;
             renderDiscountsList();
         }
@@ -1504,6 +1574,17 @@
 
             const monthKey = discDate.substring(0, 7);
 
+            if (!monthsData[monthKey]) {
+                const [y, m] = monthKey.split('-');
+                const names = {
+                    '01': 'JANEIRO', '02': 'FEVEREIRO', '03': 'MARÇO', '04': 'ABRIL',
+                    '05': 'MAIO', '06': 'JUNHO', '07': 'JULHO', '08': 'AGOSTO',
+                    '09': 'SETEMBRO', '10': 'OUTUBRO', '11': 'NOVEMBRO', '12': 'DEZEMBRO'
+                };
+                monthsData[monthKey] = `${names[m] || 'MÊS'} ${y}`;
+                saveMonths();
+            }
+
             const newDiscount = {
                 id: 'd_' + Date.now(),
                 month: monthKey,
@@ -1518,8 +1599,8 @@
             document.getElementById('disc-desc').value = '';
             document.getElementById('disc-val').value = '';
 
-            renderDiscountsList();
-            renderDashboard();
+            closeDiscountModal();
+            switchMonth(monthKey);
         }
 
         function deleteDiscount(id) {
@@ -1566,7 +1647,7 @@
             });
         }
 
-        /* HISTÓRICO TAB FUNCTIONS */
+        /* HISTÓRICO TAB */
         function renderHistoryTable() {
             const tbody = document.getElementById('history-table-body');
             if (!tbody) return;
@@ -1599,7 +1680,7 @@
                     <td class="py-2.5 px-3 text-slate-400">${e.turno || '-'}</td>
                     <td class="py-2.5 px-3 font-black text-white">${e.estab}</td>
                     <td class="py-2.5 px-3 text-slate-400">${details}</td>
-                    <td class="py-2.5 px-3 font-black ${e.type === 'folga' ? 'text-emerald-400' : 'text-emerald-400'}">${formatCurrency(e.valor)}</td>
+                    <td class="py-2.5 px-3 font-black text-emerald-400">${formatCurrency(e.valor)}</td>
                     <td class="py-2.5 px-3 text-right">
                         <button onclick="deleteEntry('${e.id}')" class="text-rose-400 hover:text-rose-300 font-bold text-xs">
                             <i class="fa-solid fa-trash-can"></i> Excluir
